@@ -1,0 +1,2 @@
+# Mobile
+Daily note
