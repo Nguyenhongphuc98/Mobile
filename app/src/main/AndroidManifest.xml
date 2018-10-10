@@ -17,6 +17,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Login"></activity>
+
+        <activity android:name=".Menu"></activity>
+
+        <activity android:name=".ListBirthdayActivity"></activity>
+
+        <activity android:name=".NewBirthdayActivity"></activity>
+
         <receiver android:name=".ServiceManage.AlarmReceiver"/>
     </application>
 

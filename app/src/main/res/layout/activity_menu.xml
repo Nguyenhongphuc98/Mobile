@@ -49,7 +49,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dashboard"
+            android:text="Diary"
             android:drawableLeft="@drawable/dashboard_icon"
             android:textAllCaps="false"
             android:drawablePadding="16dp"
@@ -62,7 +62,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Activity"
+            android:text="To do list"
             android:drawableLeft="@drawable/activity_icon"
             android:textAllCaps="false"
             android:drawablePadding="16dp"
@@ -73,9 +73,10 @@
             android:textColor="#a6aff1"/>
 
         <TextView
+            android:id="@+id/tvmenuremindbirthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tasks"
+            android:text="Remind birthday"
             android:drawableLeft="@drawable/tasks_icon"
             android:textAllCaps="false"
             android:drawablePadding="16dp"

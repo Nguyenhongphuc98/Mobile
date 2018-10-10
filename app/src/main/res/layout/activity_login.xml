@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:id="@+id/login"
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -46,7 +45,8 @@
         android:layout_marginBottom="40dp"
         android:layout_marginTop="5dp"
         android:padding="0dp"
-        android:src="@drawable/open_book"/>
+        android:src="@drawable/open_book"
+        />
 
     <EditText
         android:layout_width="match_parent"
@@ -54,22 +54,29 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/shape_02"
+        android:drawableStart="@drawable/shape_02"
         android:drawablePadding="16dp"
         android:ems="10"
-        android:hint="email"
+        android:hint="@string/hintedittextusername"
         android:inputType="textEmailAddress"
         android:maxLines="1"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:textColorHint="#fff"
         android:textSize="16sp"
         android:layout_weight="0.03" />
 
-    <view
+    <!--<view-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:background="#fff" />-->
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="5dp"
-        android:background="#fff" />
+        android:layout_height="2dp"
+        android:paddingTop="10dp"
+        android:background="#FFF"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -77,22 +84,29 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/shape_03"
+        android:drawableStart="@drawable/shape_03"
         android:drawablePadding="16dp"
         android:ems="10"
-        android:hint="passwords"
+        android:hint="@string/hintedittextpass"
         android:inputType="textEmailAddress"
         android:maxLines="1"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:textColorHint="#fff"
         android:textSize="16sp"
         android:layout_weight="0.05" />
 
-    <view
+    <!--<view-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:layout_marginTop="6dp"-->
+        <!--android:background="#fff" />-->
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="5dp"
-        android:background="#fff" />
+        android:layout_height="2dp"
+        android:paddingTop="10dp"
+        android:background="#FFF"/>
 
     <Button
         android:id="@+id/btnLogin"
@@ -116,4 +130,5 @@
         android:textAllCaps="true"
         android:textColor="#fff"
         android:textSize="10sp" />
+
 </LinearLayout>
