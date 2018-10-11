@@ -10,19 +10,64 @@
         android:layout_height="wrap_content"
         android:hint="Name friend"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="birthday"/>
-    <CalendarView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </CalendarView>
+        <TextView
+            android:id="@+id/tvDateBirthDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="birthday:"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btnChooseDateBirthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose date"
+            android:layout_marginStart="30dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvTimeBirthDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="time remind:"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btnTimeRemindBirthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose time"
+            android:layout_marginStart="30dp"/>
+    </LinearLayout>
+
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Detail relationship"/>
+
+    <Button
+        android:id="@+id/btnSaveBirthDay"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="70dp"
+        android:layout_gravity="center"
+        android:background="@drawable/rectangle_3"
+        android:focusable="true"
+        android:padding="16dp"
+        android:text="save birthday"
+        android:textAllCaps="true"
+        android:textColor="#fff"
+        android:textSize="18sp" />
 
 </LinearLayout>
