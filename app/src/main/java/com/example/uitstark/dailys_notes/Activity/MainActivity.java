@@ -1,14 +1,11 @@
-package com.example.uitstark.dailys_notes;
+package com.example.uitstark.dailys_notes.Activity;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import com.example.uitstark.dailys_notes.R;
 
 public class MainActivity extends AppCompatActivity {
 

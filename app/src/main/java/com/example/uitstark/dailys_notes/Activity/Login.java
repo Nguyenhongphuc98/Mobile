@@ -1,4 +1,4 @@
-package com.example.uitstark.dailys_notes;
+package com.example.uitstark.dailys_notes.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.uitstark.dailys_notes.R;
 
 public class Login extends Activity {
 

@@ -1,4 +1,4 @@
-package com.example.uitstark.dailys_notes;
+package com.example.uitstark.dailys_notes.Activity;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.uitstark.dailys_notes.R;
 import com.example.uitstark.dailys_notes.ServiceManage.AlarmReceiver;
 
 import java.util.Calendar;
@@ -89,6 +90,10 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
                 Intent intent=new Intent(NewBirthdayActivity.this, AlarmReceiver.class);
                 pendingIntent=PendingIntent.getBroadcast(NewBirthdayActivity.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
+
+                Intent intentGoback=new Intent();
+                setResult(ListBirthdayActivity.ADDBIRTHDAYRESULT);
+                finish();
             }
     }
 }
