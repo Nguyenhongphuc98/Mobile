@@ -1,19 +1,21 @@
 package com.example.uitstark.dailys_notes.DTO;
 
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
-public class BirthDay {
+public class BirthDay implements Serializable{
     private int id;
     private int id_user;
     private String name;
-    private Date bornDay;
-    private Time timeRemind;
+    private String bornDay;
+    private String timeRemind;
     private String note;
     private int Status;
+    private int color;
 
-    public BirthDay(int id, int id_user, String name, Date bornDay,Time timeRemind, String note,int status) {
+    public BirthDay(int id, int id_user, String name, String bornDay,String timeRemind, String note,int status,int color) {
         this.id = id;
         this.id_user = id_user;
         this.name = name;
@@ -21,9 +23,10 @@ public class BirthDay {
         this.timeRemind=timeRemind;
         this.note = note;
         this.Status=status;
+        this.color=color;
     }
 
-    public BirthDay(int id_user, String name, Date bornDay,Time timeRemind, String note,int status) {
+    public BirthDay(int id_user, String name, String bornDay,String timeRemind, String note,int status,int color) {
         this.id = id;
         this.id_user = id_user;
         this.name = name;
@@ -31,6 +34,7 @@ public class BirthDay {
         this.timeRemind=timeRemind;
         this.note = note;
         this.Status=status;
+        this.color=color;
     }
 
     public int getId() {
@@ -57,19 +61,19 @@ public class BirthDay {
         this.name = name;
     }
 
-    public Date getBornDay() {
+    public String getBornDay() {
         return bornDay;
     }
 
-    public void setBornDay(Date bornDay) {
+    public void setBornDay(String bornDay) {
         this.bornDay = bornDay;
     }
 
-    public Time getTimeRemind() {
+    public String getTimeRemind() {
         return timeRemind;
     }
 
-    public void setTimeRemind(Time timeRemind) {
+    public void setTimeRemind(String timeRemind) {
         this.timeRemind = timeRemind;
     }
 
@@ -87,5 +91,13 @@ public class BirthDay {
 
     public void setStatus(int status) {
         Status = status;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 }

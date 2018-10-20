@@ -9,9 +9,10 @@ public class Diary {
     private String content;
     private String img;
     private String font;
-    private Color color;
+    private int color;
 
-    public Diary(int id, int id_user, String title, String content, String img, String font, Color color) {
+
+    public Diary(int id, int id_user, String title, String content, String img, String font, int color) {
         this.id = id;
         this.id_user = id_user;
         this.title = title;
@@ -20,7 +21,7 @@ public class Diary {
         this.font = font;
         this.color = color;
     }
-    public Diary( int id_user, String title, String content, String img, String font, Color color) {
+    public Diary( int id_user, String title, String content, String img, String font, int color) {
         this.id = id;
         this.id_user = id_user;
         this.title = title;
@@ -78,11 +79,11 @@ public class Diary {
         this.font = font;
     }
 
-    public Color getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(int color) {
         this.color = color;
     }
 }

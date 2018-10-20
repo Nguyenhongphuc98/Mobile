@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.uitstark.dailys_notes.DTO.BirthDay;
 import com.example.uitstark.dailys_notes.DTO.User;
@@ -25,18 +26,20 @@ public class BirthdayDAL extends DatabaseHandler {
     private static final String KEY_BIRTHDAY_ID = "id";
     private static final String KEY_BIRTHDAY_IDUSER = "iduser";
     private static final String KEY_BIRTHDAY_NAME = "friendname";
-    private static final String KEY_BIRTHDAY_TIME = "time";
     private static final String KEY_BIRTHDAY_DATE = "date";
-    private static final String KEY_USER__DETAIL     = "detail";
-    private static final String KEY_USER__STATUS = "status"; //1 da cap nhat len sever, 0 chua
+    private static final String KEY_BIRTHDAY_TIME = "time";
+    private static final String KEY_BIRTHDAY_DETAIL     = "detail";
+    private static final String KEY_BIRTHDAY_STATUS = "status"; //1 da cap nhat len sever, 0 chua
+    private static final String KEY_BIRTHDAY_COLOR ="color";
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String strCreateTableBirthday=
                 String.format("CREATE TABLE %s" +
-                                "(%s INTEGER PRIMARY KEY,%s INTEGER, %s TEXT, %s TEXT, %s TEXT, %s TEXT, % INTEGER)",
-                        TABLE_BIRTHDAY_NAME, KEY_BIRTHDAY_ID,KEY_BIRTHDAY_IDUSER, KEY_BIRTHDAY_NAME, KEY_BIRTHDAY_DATE, KEY_BIRTHDAY_TIME,KEY_USER__DETAIL,KEY_USER__STATUS);
+                                "(%s INTEGER PRIMARY KEY,%s INTEGER, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s INTEGER,%s INTEGER)",
+                        TABLE_BIRTHDAY_NAME, KEY_BIRTHDAY_ID,KEY_BIRTHDAY_IDUSER,
+                        KEY_BIRTHDAY_NAME, KEY_BIRTHDAY_DATE, KEY_BIRTHDAY_TIME,KEY_BIRTHDAY_DETAIL,KEY_BIRTHDAY_STATUS, KEY_BIRTHDAY_COLOR);
         db.execSQL(strCreateTableBirthday);
     }
 
@@ -52,14 +55,17 @@ public class BirthdayDAL extends DatabaseHandler {
         ContentValues values = new ContentValues();
         values.put(KEY_BIRTHDAY_IDUSER, birthDay.getId_user());
         values.put(KEY_BIRTHDAY_NAME,birthDay.getName());
-        values.put(KEY_BIRTHDAY_DATE, birthDay.getBornDay().toString());
-        values.put(KEY_BIRTHDAY_TIME,birthDay.getTimeRemind().toString());
-        values.put(KEY_USER__DETAIL,birthDay.getNote());
-        values.put(KEY_USER__STATUS,birthDay.getStatus());
+        values.put(KEY_BIRTHDAY_DATE, birthDay.getBornDay());
+        values.put(KEY_BIRTHDAY_TIME,birthDay.getTimeRemind());
+        values.put(KEY_BIRTHDAY_DETAIL,birthDay.getNote());
+        values.put(KEY_BIRTHDAY_STATUS,birthDay.getStatus());
+        values.put(KEY_BIRTHDAY_COLOR,birthDay.getColor());
 
         //if value is empty -> don't insert -> null
         db.insert(TABLE_BIRTHDAY_NAME, null, values);
         db.close();
+
+        Log.d("TAGGG","save success");
     }
 
     public BirthDay getBirthday(int birthDayId) throws ParseException {
@@ -72,11 +78,12 @@ public class BirthdayDAL extends DatabaseHandler {
         int idBirthday=cursor.getInt(0);
         int idUserBirthday=cursor.getInt(1);
         String nameFriend=cursor.getString(2);
-        Date bornDate= new SimpleDateFormat().parse(cursor.getString(3));
-        Time timeRemind= (Time) new SimpleDateFormat("HH:mm").parse(cursor.getString(4));
+        String bornDate= cursor.getString(3);
+        String timeRemind= cursor.getString(4);
         String detail=cursor.getString(5);
         int status=cursor.getInt(6);
-        BirthDay birthDay = new BirthDay(idBirthday,idUserBirthday,nameFriend ,bornDate,timeRemind ,detail,status);
+        int color=cursor.getInt(7);
+        BirthDay birthDay = new BirthDay(idBirthday,idUserBirthday,nameFriend ,bornDate,timeRemind ,detail,status,color);
         return birthDay;
     }
 
@@ -88,15 +95,16 @@ public class BirthdayDAL extends DatabaseHandler {
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
 
-        while(cursor.isAfterLast() == false) {
+        while(!cursor.isAfterLast()) {
             int idBirthday=cursor.getInt(0);
             int idUserBirthday=cursor.getInt(1);
             String nameFriend=cursor.getString(2);
-            Date bornDate= new SimpleDateFormat().parse(cursor.getString(3));
-            Time timeRemind= (Time) new SimpleDateFormat("HH:mm").parse(cursor.getString(4));
+            String bornDate= cursor.getString(3);
+            String timeRemind= cursor.getString(4);
             String detail=cursor.getString(5);
             int status=cursor.getInt(6);
-            BirthDay birthDay = new BirthDay(idBirthday,idUserBirthday,nameFriend ,bornDate,timeRemind ,detail,status);
+            int color=cursor.getInt(7);
+            BirthDay birthDay = new BirthDay(idBirthday,idUserBirthday,nameFriend ,bornDate,timeRemind ,detail,status,color);
             birthDayList.add(birthDay);
             cursor.moveToNext();
         }
@@ -109,10 +117,11 @@ public class BirthdayDAL extends DatabaseHandler {
         ContentValues values = new ContentValues();
         values.put(KEY_BIRTHDAY_IDUSER, birthDay.getId_user());
         values.put(KEY_BIRTHDAY_NAME, birthDay.getName());
-        values.put(KEY_BIRTHDAY_DATE, birthDay.getBornDay().toString());
-        values.put(KEY_BIRTHDAY_TIME, birthDay.getTimeRemind().toString());
-        values.put(KEY_USER__DETAIL, birthDay.getNote());
-        values.put(KEY_USER__STATUS, birthDay.getStatus());
+        values.put(KEY_BIRTHDAY_DATE, birthDay.getBornDay());
+        values.put(KEY_BIRTHDAY_TIME, birthDay.getTimeRemind());
+        values.put(KEY_BIRTHDAY_DETAIL,birthDay.getNote());
+        values.put(KEY_BIRTHDAY_STATUS,birthDay.getStatus());
+        values.put(KEY_BIRTHDAY_COLOR,birthDay.getStatus());
 
         db.update(TABLE_BIRTHDAY_NAME, values, KEY_BIRTHDAY_ID + " = ?", new String[] { String.valueOf(birthDay.getId()) });
         db.close();
