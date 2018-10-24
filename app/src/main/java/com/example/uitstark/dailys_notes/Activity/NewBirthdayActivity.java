@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -45,7 +46,7 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
     BirthdayDAL birthdayDAL;
     AlarmManager alarmManager;
     PendingIntent pendingIntent;
-    Calendar  calendar;
+    Calendar   calendar=Calendar.getInstance();
     Calendar  calendarRemind;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,19 +71,17 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if(v==buttonChooseDateBirthday){
-
-            calendar=Calendar.getInstance();
             d=calendar.get(Calendar.DAY_OF_MONTH);
-            m=calendar.get(Calendar.MONTH)+1;
+            m=calendar.get(Calendar.MONTH);
             y=calendar.get(Calendar.YEAR);
 
             DatePickerDialog datePickerDialog=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    textViewDate.setText(year+"-"+month+"-"+dayOfMonth);
-//                    y=year;
-//                    m=month;
-//                    d=dayOfMonth;
+                    textViewDate.setText(year+"-"+(month+1)+"-"+dayOfMonth);
+                    y=year;
+                    m=month;
+                    d=dayOfMonth;
                 }
             },y,m,d);
 
@@ -99,17 +98,19 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
         else
             if(v==buttonChooseTimeRemindBirthday){
 
-                h=calendar.get(Calendar.HOUR);
+                h=calendar.get(Calendar.HOUR_OF_DAY);
                 mi=calendar.get(Calendar.MINUTE);
 
                 TimePickerDialog timePickerDialog=new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         textViewTime.setText(hourOfDay+"-"+minute);
+                        h=hourOfDay;
+                        mi=minute;
                       //  calendar.set(y,m,d,hourOfDay,minute,0);
                        // calendarRemind.set(y,m,d,hourOfDay,minute,0);
                     }
-                }, h, mi, false);
+                }, h, mi, true);
 
                 timePickerDialog.show();
             }
@@ -149,9 +150,25 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
                 }
 
 
+                //cacula time;
+                long timeRemain;
+                long yearMili=(y-calendar.get(Calendar.YEAR))*365*24*60*60*1000;
+                long monthMili=(m-calendar.get(Calendar.MONTH))*calendar.get(Calendar.MONTH)*24*60*60*1000;
+                long dayMili=(d-calendar.get(Calendar.DAY_OF_MONTH))*24*60*60*1000;
+                long hourMili=(h-calendar.get(Calendar.HOUR_OF_DAY))*60*60*1000;
+                long minuteMili=(mi-calendar.get(Calendar.MINUTE))*60*1000;
+                timeRemain=calendar.getTimeInMillis()+yearMili+monthMili+dayMili+hourMili+minuteMili;
+                //timeRemain=calendar.getTimeInMillis()+5000;
+
+//                Log.d("TAAAAAAYEAR",String.valueOf(yearMili));
+//                Log.d("TAAAAAAMONTH",String.valueOf(monthMili));
+//                Log.d("TAAAAAAday",String.valueOf(dayMili));
+//                Log.d("TAAAAAAhour",String.valueOf(hourMili));
+//                Log.d("TAAAAAAminuteH",String.valueOf(minuteMili));
+
                 //sendBroadcast(intent);
                 pendingIntent=PendingIntent.getBroadcast(NewBirthdayActivity.this,0,intent,PendingIntent.FLAG_CANCEL_CURRENT    );
-                alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
+                alarmManager.set(AlarmManager.RTC_WAKEUP,timeRemain,pendingIntent);
                 //alarmManager.set(AlarmManager.RTC_WAKEUP,calendarRemind.getTimeInMillis(),pendingIntent);
 
 
