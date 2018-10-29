@@ -1,92 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <EditText
-        android:id="@+id/etName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name friend"/>
-
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/bacgroundlistbirthday"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <TextView
-            android:id="@+id/tvDateBirthDay"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="258dp"
             android:layout_height="wrap_content"
-            android:text="birthday:"
-            android:textSize="18sp"/>
+            android:layout_marginTop="170dp"
+            android:layout_gravity="center"
+            android:hint="Name friend"
+            android:gravity="center"/>
 
-        <Button
-            android:id="@+id/btnChooseDateBirthday"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Choose date"
-            android:layout_marginStart="30dp"/>
-    </LinearLayout>
+            android:paddingTop="32dp"
+            android:layout_marginLeft="70dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvDateBirthDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="birthday:"
+                android:textSize="18sp"/>
 
-        <TextView
-            android:id="@+id/tvTimeBirthDay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="time remind:"
-            android:textSize="18sp"/>
+            <Button
+                android:id="@+id/btnChooseDateBirthday"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:text="..."
+                android:layout_marginStart="90dp"/>
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/btnTimeRemindBirthday"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Choose time"
-            android:layout_marginStart="30dp"/>
-    </LinearLayout>
+            android:layout_marginTop="-3dp"
+            android:layout_marginLeft="70dp">
+
+            <TextView
+                android:id="@+id/tvTimeBirthDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="time remind:"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/btnTimeRemindBirthday"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:text="..."
+                android:layout_marginStart="60dp"/>
+        </LinearLayout>
 
 
-    <EditText
-        android:id="@+id/etRelationship"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Detail relationship:"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="150dp"
+        <EditText
+            android:id="@+id/etRelationship"
+            android:layout_width="258dp"
             android:layout_height="wrap_content"
+            android:hint="Detail relationship:"
+            android:paddingTop="43dp"
             android:gravity="center"
-            android:text="Color:"/>
+            android:layout_gravity="center"/>
 
-        <Spinner
-            android:id="@+id/spinnerColor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="150dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center"-->
+                <!--android:text="Color:"/>-->
+
+            <!--<Spinner-->
+                <!--android:id="@+id/spinnerColor"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"/>-->
+        <!--</LinearLayout>-->
+
+        <Button
+            android:id="@+id/btnSaveBirthDay"
+            android:layout_width="235dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="70dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rectangle_3"
+            android:focusable="true"
+            android:padding="16dp"
+            android:text="save birthday"
+            android:textAllCaps="true"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnSaveBirthDay"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="70dp"
-        android:layout_gravity="center"
-        android:background="@drawable/rectangle_3"
-        android:focusable="true"
-        android:padding="16dp"
-        android:text="save birthday"
-        android:textAllCaps="true"
-        android:textColor="#fff"
-        android:textSize="18sp" />
-
-</LinearLayout>

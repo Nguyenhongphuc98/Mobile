@@ -72,18 +72,20 @@ public class BirthdayDAL extends DatabaseHandler {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_BIRTHDAY_NAME, null, KEY_BIRTHDAY_ID + " = ?", new String[] { String.valueOf(birthDayId) },null, null, null);
-        if(cursor != null)
+        BirthDay birthDay =null;
+        if(cursor != null) {
             cursor.moveToFirst();
+            int idBirthday=cursor.getInt(0);
+            int idUserBirthday=cursor.getInt(1);
+            String nameFriend=cursor.getString(2);
+            String bornDate= cursor.getString(3);
+            String timeRemind= cursor.getString(4);
+            String detail=cursor.getString(5);
+            int status=cursor.getInt(6);
+            int color=cursor.getInt(7);
 
-        int idBirthday=cursor.getInt(0);
-        int idUserBirthday=cursor.getInt(1);
-        String nameFriend=cursor.getString(2);
-        String bornDate= cursor.getString(3);
-        String timeRemind= cursor.getString(4);
-        String detail=cursor.getString(5);
-        int status=cursor.getInt(6);
-        int color=cursor.getInt(7);
-        BirthDay birthDay = new BirthDay(idBirthday,idUserBirthday,nameFriend ,bornDate,timeRemind ,detail,status,color);
+            birthDay= new BirthDay(idBirthday,idUserBirthday,nameFriend ,bornDate,timeRemind ,detail,status,color);
+        }
         return birthDay;
     }
 

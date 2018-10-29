@@ -60,7 +60,7 @@ public class BirthdayAdapter extends BaseAdapter {
         }
 
         ViewHolder viewHolder= (ViewHolder) viewRow.getTag();
-        viewHolder.soThuTu.setText(String.valueOf(position));
+        viewHolder.soThuTu.setText(String.valueOf(listBirthday.get(position).getId()));
         viewHolder.tenBanBe.setText(listBirthday.get(position).getName());
         viewHolder.ngaySinh.setText(listBirthday.get(position).getBornDay());
         viewHolder.quanHe.setText(listBirthday.get(position).getNote());
