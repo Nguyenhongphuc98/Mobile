@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.uitstark.dailys_notes.DTO.BirthDay;
+import com.example.uitstark.dailys_notes.DTO.Global;
 import com.example.uitstark.dailys_notes.DatabaseManage.BirthdayDAL;
 import com.example.uitstark.dailys_notes.R;
 import com.example.uitstark.dailys_notes.ServiceManage.AlarmReceiver;
@@ -30,6 +31,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class NewBirthdayActivity extends Activity implements View.OnClickListener{
     Button buttonChooseDateBirthday;
@@ -47,12 +49,17 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
     AlarmManager alarmManager;
     PendingIntent pendingIntent;
     Calendar   calendar=Calendar.getInstance();
-    Calendar  calendarRemind;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_birthday);
 
+        LinkView();
+        SetAction();
+    }
+
+    void LinkView(){
         buttonChooseDateBirthday =findViewById(R.id.btnChooseDateBirthday);
         buttonChooseTimeRemindBirthday=findViewById(R.id.btnTimeRemindBirthday);
         buttonSaveBirthday=findViewById(R.id.btnSaveBirthDay);
@@ -62,7 +69,9 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
 
         textViewDate=findViewById(R.id.tvDateBirthDay);
         textViewTime=findViewById(R.id.tvTimeBirthDay);
+    }
 
+    void SetAction(){
         buttonChooseDateBirthday.setOnClickListener(this);
         buttonChooseTimeRemindBirthday.setOnClickListener(this);
         buttonSaveBirthday.setOnClickListener(this);
@@ -86,14 +95,6 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
             },y,m,d);
 
             datePickerDialog.show();
-//            datePickerDialog.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
-//                @Override
-//                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//                    y=year;
-//                    m=month;
-//                    d=dayOfMonth;
-//                }
-//            });
         }
         else
             if(v==buttonChooseTimeRemindBirthday){
@@ -107,8 +108,6 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
                         textViewTime.setText(hourOfDay+"-"+minute);
                         h=hourOfDay;
                         mi=minute;
-                      //  calendar.set(y,m,d,hourOfDay,minute,0);
-                       // calendarRemind.set(y,m,d,hourOfDay,minute,0);
                     }
                 }, h, mi, true);
 
@@ -119,7 +118,8 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
 
                 //save data to database
                 birthdayDAL=new BirthdayDAL(this);
-                //get current user. now we set default user 1
+                //caculate id user to save, default 1
+
                 String born=textViewDate.getText().toString();
                 String time=textViewTime.getText().toString();
                 String name= String.valueOf(editTextName.getText());
@@ -134,21 +134,23 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
                 Intent intent=new Intent(NewBirthdayActivity.this, AlarmReceiver.class);
 
                 byte []data;
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                ObjectOutputStream os = null;
-                try {
-                    os = new ObjectOutputStream(out);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    os.writeObject(birthDay);
-                    data=out.toByteArray();
-                    intent.putExtra("birthday",data);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//                ByteArrayOutputStream out = new ByteArrayOutputStream();
+//                ObjectOutputStream os = null;
+//                try {
+//                    os = new ObjectOutputStream(out);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                try {
+//                    os.writeObject(birthDay);
+//                    data=out.toByteArray();
+//                    intent.putExtra("birthday",data);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
 
+                data= Global.ConverttoByte(birthDay);
+                intent.putExtra("birthday",data);
 
                 //cacula time;
                 long timeRemain;
@@ -158,7 +160,6 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
                 long hourMili=(h-calendar.get(Calendar.HOUR_OF_DAY))*60*60*1000;
                 long minuteMili=(mi-calendar.get(Calendar.MINUTE))*60*1000;
                 timeRemain=calendar.getTimeInMillis()+yearMili+monthMili+dayMili+hourMili+minuteMili;
-                //timeRemain=calendar.getTimeInMillis()+5000;
 
 //                Log.d("TAAAAAAYEAR",String.valueOf(yearMili));
 //                Log.d("TAAAAAAMONTH",String.valueOf(monthMili));
@@ -169,15 +170,9 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
                 //sendBroadcast(intent);
                 pendingIntent=PendingIntent.getBroadcast(NewBirthdayActivity.this,0,intent,PendingIntent.FLAG_CANCEL_CURRENT    );
                 alarmManager.set(AlarmManager.RTC_WAKEUP,timeRemain,pendingIntent);
-                //alarmManager.set(AlarmManager.RTC_WAKEUP,calendarRemind.getTimeInMillis(),pendingIntent);
-
-
-
 
 
                 //notifi save and come back- update listview birthday
-               // Intent intentGoback=new Intent();
-
                 setResult(ListBirthdayActivity.ADDBIRTHDAYRESULT);
                 finish();
             }

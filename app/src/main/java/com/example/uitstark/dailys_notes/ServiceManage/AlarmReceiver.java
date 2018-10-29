@@ -9,6 +9,7 @@ import android.util.Log;
 
 
 import com.example.uitstark.dailys_notes.DTO.BirthDay;
+import com.example.uitstark.dailys_notes.DTO.Global;
 import com.example.uitstark.dailys_notes.R;
 
 import java.io.ByteArrayInputStream;
@@ -23,20 +24,19 @@ public class AlarmReceiver extends BroadcastReceiver {
         //c thong tin se duoc tiep nhan o day
         //no co the chay ngam
         Log.d("TAGGGGGGGGGG:","da nhan duoc thong tin dang ky");
-     //   BirthDay birthDay= (BirthDay) intent.getSerializableExtra(  "birthday");
 
         BirthDay birthDay;
         byte [] data=intent.getByteArrayExtra("birthday");
-        ByteArrayInputStream in = new ByteArrayInputStream(data);
-        ObjectInputStream is = null;
+//        ByteArrayInputStream in = new ByteArrayInputStream(data);
+//        ObjectInputStream is = null;
+//        try {
+//            is = new ObjectInputStream(in);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         try {
-            is = new ObjectInputStream(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            birthDay= (BirthDay) is.readObject();
-
+           // birthDay= (BirthDay) is.readObject();
+            birthDay= Global.ConverttoBirthday(data);
             String title=birthDay.getName();
             String content=birthDay.getNote();
 
@@ -53,20 +53,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        // if(birthDay!=null){
-//            String title=birthDay.getName();
-//            String content=birthDay.getNote();
-//
-//            NotificationCompat.Builder mBuilder =
-//                    new NotificationCompat.Builder(context)
-//                            .setSmallIcon(R.drawable.icon_notify)
-//                            .setContentTitle(title)
-//                            .setContentText(content);
-//            //co the set them conten cho notify o day
-//            notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-//            notificationManager.notify(1, mBuilder.build());
-      //  }
 
     }
 }
