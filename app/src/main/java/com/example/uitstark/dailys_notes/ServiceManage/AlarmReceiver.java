@@ -4,6 +4,10 @@ import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -27,22 +31,22 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         BirthDay birthDay;
         byte [] data=intent.getByteArrayExtra("birthday");
-//        ByteArrayInputStream in = new ByteArrayInputStream(data);
-//        ObjectInputStream is = null;
-//        try {
-//            is = new ObjectInputStream(in);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
         try {
-           // birthDay= (BirthDay) is.readObject();
+
+//            MediaPlayer mediaPlayer =MediaPlayer.create(context,R.raw.short_sms);
+//            mediaPlayer.start();
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(context, notification);
+            r.play();
+
             birthDay= Global.ConverttoBirthday(data);
             String title=birthDay.getName();
             String content=birthDay.getNote();
 
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(context)
-                            .setSmallIcon(R.drawable.icon_notify)
+                            .setSmallIcon(R.drawable.icons_app)
                             .setContentTitle(title)
                             .setContentText(content);
             //co the set them conten cho notify o day

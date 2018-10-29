@@ -134,21 +134,6 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
                 Intent intent=new Intent(NewBirthdayActivity.this, AlarmReceiver.class);
 
                 byte []data;
-//                ByteArrayOutputStream out = new ByteArrayOutputStream();
-//                ObjectOutputStream os = null;
-//                try {
-//                    os = new ObjectOutputStream(out);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                try {
-//                    os.writeObject(birthDay);
-//                    data=out.toByteArray();
-//                    intent.putExtra("birthday",data);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-
                 data= Global.ConverttoByte(birthDay);
                 intent.putExtra("birthday",data);
 
