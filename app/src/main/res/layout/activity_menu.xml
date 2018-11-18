@@ -27,11 +27,12 @@
                 android:src="@drawable/open_book"/>
 
             <TextView
+                android:id="@+id/username_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:gravity="center_vertical"
-                android:text="name user"
+                android:text=""
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="22sp"/>

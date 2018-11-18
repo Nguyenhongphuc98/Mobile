@@ -5,24 +5,29 @@ public class User {
 
     private int id;
     private String email;
-    private String passWord;
+    private String password;
     private String fullName;
-    private String phoneNumber;
 
-    public  User(int id, String email,String passWord,String fullName,String phoneNumber){
-        this.id=id;
-        this.email=email;
-        this.passWord=passWord;
-        this.fullName=fullName;
-        this.phoneNumber=phoneNumber;
+    public User(int id, String email, String password, String fullName) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.fullName = fullName;
     }
-    public  User(String email,String passWord,String fullName,String phoneNumber){
-        this.id=0;
-        this.email=email;
-        this.passWord=passWord;
-        this.fullName=fullName;
-        this.phoneNumber=phoneNumber;
+
+    public User(String email, String password, String fullName) {
+        this.email = email;
+        this.password = password;
+        this.fullName = fullName;
     }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+
+    }
+
+
     public int getId() {
         return id;
     }
@@ -39,12 +44,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFullName() {
@@ -55,12 +60,13 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+    @Override
+    public String toString() {
+        return "User{" +
+                "id="+ id +
+                ", email='" + email +'\'' +
+                ", password='" + password + '\'' +
+                '}';
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
-
 }

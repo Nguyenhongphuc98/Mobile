@@ -4,27 +4,80 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.uitstark.dailys_notes.DTO.User;
+import com.example.uitstark.dailys_notes.DatabaseManage.UserDAL;
 import com.example.uitstark.dailys_notes.R;
 
 public class Login extends Activity {
 
-    Button buttonLogin;
-    Intent intent;
+    private Button btnLogin;
+    private Button btnRegister;
+    private EditText edtUserName;
+    private EditText edtPassword;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        buttonLogin=findViewById(R.id.btnLogin);
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin=findViewById(R.id.btnLogin);
+        btnRegister=findViewById(R.id.btnRegister_Login);
+
+        edtUserName= findViewById(R.id.username_login);
+        edtPassword=findViewById(R.id.password_login);
+
+        final UserDAL dbUser = new UserDAL(this);
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent=new Intent(Login.this,Menu.class);
+                if(!emptyValidation()) {
+                    User user =dbUser.queryUser(edtUserName.getText().toString(),edtPassword.getText().toString());
+                    if(user!=null) {
+                        Bundle mBundle = new Bundle();
+                        mBundle.putString("user",user.getEmail());
+                        Intent intent = new Intent(Login.this,UserActivity.class);
+                        intent.putExtras(mBundle);
+                        startActivity(intent);
+                        Toast.makeText(Login.this,"Welcome " + user.getEmail(),Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(Login.this, "User not found", Toast.LENGTH_SHORT).show();
+                        edtPassword.setText("");
+                    }
+                } else{
+                    Toast.makeText(Login.this, "Empty Fields", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Login.this,Register.class);
                 startActivity(intent);
             }
         });
+
+
+
+
+
+
+
+    }
+    private boolean emptyValidation() {
+        if (TextUtils.isEmpty(edtUserName.getText().toString()) || TextUtils.isEmpty(edtPassword.getText().toString())) {
+            return true;
+        }else {
+            return false;
+        }
     }
 }

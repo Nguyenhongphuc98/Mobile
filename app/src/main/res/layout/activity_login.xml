@@ -50,6 +50,7 @@
         />
 
     <EditText
+        android:id="@+id/username_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -80,6 +81,7 @@
         android:background="#FFF"/>
 
     <EditText
+        android:id="@+id/password_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -122,14 +124,19 @@
         android:textColor="#fff"
         android:textSize="18sp" />
 
-    <TextView
+    <Button
+        android:id="@+id/btnRegister_Login"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:text="create new account"
+        android:layout_height="70dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/register"
+        android:clickable="true"
+        android:padding="16dp"
+        android:text=""
         android:textAllCaps="true"
         android:textColor="#fff"
-        android:textSize="10sp" />
+        android:textSize="18sp" />
+
+
 
 </LinearLayout>

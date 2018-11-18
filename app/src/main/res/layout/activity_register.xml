@@ -36,13 +36,14 @@
 
 
     <EditText
+        android:id="@+id/fullNameRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:layout_weight="0.03"
         android:background="@android:color/transparent"
-        android:drawableStart=""
+
         android:drawablePadding="16dp"
         android:ems="10"
         android:hint="Full Name"
@@ -60,13 +61,14 @@
         android:paddingTop="10dp" />
 
     <EditText
+        android:id="@+id/usernameRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:layout_weight="0.03"
         android:background="@android:color/transparent"
-        android:drawableStart=""
+
         android:drawablePadding="16dp"
         android:ems="10"
         android:hint="@string/hintedittextusername"
@@ -86,13 +88,14 @@
         android:paddingTop="10dp" />
 
     <EditText
+        android:id="@+id/passwordRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:layout_weight="0.05"
         android:background="@android:color/transparent"
-        android:drawableStart=""
+
         android:drawablePadding="16dp"
         android:ems="10"
         android:hint="@string/hintedittextpass"
@@ -103,11 +106,7 @@
         android:textColorHint="#fff"
         android:textSize="16sp" />
 
-    <!--<view-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="1dp"-->
-    <!--android:layout_marginTop="6dp"-->
-    <!--android:background="#fff" />-->
+
 
     <TextView
         android:layout_width="match_parent"
