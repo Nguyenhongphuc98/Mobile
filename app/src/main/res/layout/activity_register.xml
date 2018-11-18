@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layer_3"
-    android:paddingBottom="16dp"
+    android:gravity="center"
+    android:orientation="vertical"
     android:paddingLeft="16dp"
+    android:paddingTop="10dp"
     android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    android:weightSum="1">
+    android:paddingBottom="16dp"
+    android:weightSum="1"
+
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,38 +26,47 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Welcome, "
+            android:text="Register New Account "
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="26sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Daily note"
-            android:textAllCaps="false"
-            android:textColor="#67e1ff"
-            android:textSize="26sp" />
+
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="5dp"
-        android:padding="0dp"
-        android:src="@drawable/open_book"
-        />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
+        android:layout_weight="0.03"
         android:background="@android:color/transparent"
-        android:drawableStart="@drawable/shape_02"
+        android:drawableStart=""
+        android:drawablePadding="16dp"
+        android:ems="10"
+        android:hint="Full Name"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColorHint="#fff"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#FFF"
+        android:paddingTop="10dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.03"
+        android:background="@android:color/transparent"
+        android:drawableStart=""
         android:drawablePadding="16dp"
         android:ems="10"
         android:hint="@string/hintedittextusername"
@@ -64,28 +75,24 @@
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:textColorHint="#fff"
-        android:textSize="16sp"
-        android:layout_weight="0.03" />
+        android:textSize="16sp" />
 
-    <!--<view-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:background="#fff" />-->
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:paddingTop="10dp"
-        android:background="#FFF"/>
+        android:background="#FFF"
+        android:paddingTop="10dp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
+        android:layout_weight="0.05"
         android:background="@android:color/transparent"
-        android:drawableStart="@drawable/shape_03"
+        android:drawableStart=""
         android:drawablePadding="16dp"
         android:ems="10"
         android:hint="@string/hintedittextpass"
@@ -94,42 +101,34 @@
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:textColorHint="#fff"
-        android:textSize="16sp"
-        android:layout_weight="0.05" />
+        android:textSize="16sp" />
 
     <!--<view-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:layout_marginTop="6dp"-->
-        <!--android:background="#fff" />-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:layout_marginTop="6dp"-->
+    <!--android:background="#fff" />-->
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:paddingTop="10dp"
-        android:background="#FFF"/>
+        android:background="#FFF"
+        android:paddingTop="10dp" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/rectangle_3"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/register"
         android:clickable="true"
-        android:padding="16dp"
-        android:text="login"
-        android:textAllCaps="true"
-        android:textColor="#fff"
-        android:textSize="18sp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:text="create new account"
+        android:padding="10dp"
+        android:text=""
         android:textAllCaps="true"
         android:textColor="#fff"
         android:textSize="10sp" />
+
+
+
 
 </LinearLayout>
