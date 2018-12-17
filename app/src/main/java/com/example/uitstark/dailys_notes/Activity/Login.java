@@ -50,6 +50,7 @@ public class Login extends Activity {
 
                     } else {
                         Toast.makeText(Login.this, "User not found", Toast.LENGTH_SHORT).show();
+
                         edtPassword.setText("");
                     }
                 } else{

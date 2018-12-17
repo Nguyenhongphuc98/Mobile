@@ -28,7 +28,12 @@
 
         <activity android:name=".Activity.NewBirthdayActivity"></activity>
 
+        <activity android:name=".Activity.Register"></activity>
+
+        <activity android:name=".Activity.UserActivity"></activity>
+
         <receiver android:name=".ServiceManage.AlarmReceiver"/>
+
     </application>
 
 </manifest>

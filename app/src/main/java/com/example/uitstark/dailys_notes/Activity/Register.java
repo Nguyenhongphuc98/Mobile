@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -32,16 +33,22 @@ public class Register  extends AppCompatActivity {
 
         final UserDAL dbUser = new UserDAL(this);
 
-        if (!emptyValidation()) {
-            dbUser.addUser(new User(edtUserName.getText().toString(), edtPassword.getText().toString(),edtFullName.getText().toString()));
-            Toast.makeText(Register.this, "Added User", Toast.LENGTH_SHORT).show();
-            edtUserName.setText("");
-            edtPassword.setText("");
-            Intent intent = new Intent(Register.this,Login.class);
-            startActivity(intent);
-        }else{
-            Toast.makeText(Register.this, "Empty Fields", Toast.LENGTH_SHORT).show();
-        }
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!emptyValidation()) {
+                    dbUser.addUser(new User(edtUserName.getText().toString(), edtPassword.getText().toString(),edtFullName.getText().toString()));
+                    Toast.makeText(Register.this, "Added User", Toast.LENGTH_SHORT).show();
+                    edtUserName.setText("");
+                    edtPassword.setText("");
+                    Intent intent = new Intent(Register.this,Login.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(Register.this, "Empty Fields", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
     }
 
