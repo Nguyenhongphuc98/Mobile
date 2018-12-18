@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:id="@+id/menu"
     android:layout_width="match_parent"
@@ -48,6 +49,7 @@
         android:background="@drawable/rectangle_1">
 
         <TextView
+            android:id="@+id/tvDiary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Diary"
@@ -56,11 +58,13 @@
             android:drawablePadding="16dp"
             android:textSize="18sp"
             android:gravity="start"
+            android:onClick="onClick"
             android:clickable="true"
             android:padding="10dp"
             android:textColor="#a6aff1"/>
 
         <TextView
+            android:id="@+id/tvToDoList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="To do list"
@@ -69,6 +73,7 @@
             android:drawablePadding="16dp"
             android:textSize="18sp"
             android:gravity="start"
+            android:onClick="onClick"
             android:clickable="true"
             android:padding="10dp"
             android:textColor="#a6aff1"/>
@@ -83,11 +88,13 @@
             android:drawablePadding="16dp"
             android:textSize="18sp"
             android:gravity="start"
+            android:onClick="onMyClick"
             android:clickable="true"
             android:padding="10dp"
             android:textColor="#a6aff1"/>
 
         <TextView
+            android:id="@+id/tvSettingAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Account settings"
@@ -96,11 +103,13 @@
             android:drawablePadding="16dp"
             android:textSize="18sp"
             android:gravity="start"
+            android:onClick="onClick"
             android:clickable="true"
             android:padding="10dp"
             android:textColor="#a6aff1"/>
 
         <TextView
+            android:id="@+id/tvlogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Log out"
@@ -109,8 +118,10 @@
             android:drawablePadding="16dp"
             android:textSize="18sp"
             android:gravity="start"
+            android:onClick="onClick"
             android:clickable="true"
             android:padding="10dp"
-            android:textColor="#a6aff1"/>
+            android:textColor="#a6aff1"
+            tools:ignore="InvalidId" />
     </LinearLayout>
 </LinearLayout>

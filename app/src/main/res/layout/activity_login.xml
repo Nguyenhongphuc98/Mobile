@@ -91,6 +91,7 @@
         android:drawablePadding="16dp"
         android:ems="10"
         android:hint="@string/hintedittextpass"
+
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:paddingStart="10dp"
@@ -113,10 +114,10 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/rectangle_3"
+
         android:clickable="true"
         android:padding="16dp"
         android:text="login"
@@ -126,13 +127,13 @@
 
     <Button
         android:id="@+id/btnRegister_Login"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/register"
+
         android:clickable="true"
         android:padding="16dp"
-        android:text=""
+        android:text="Register"
         android:textAllCaps="true"
         android:textColor="#fff"
         android:textSize="18sp" />

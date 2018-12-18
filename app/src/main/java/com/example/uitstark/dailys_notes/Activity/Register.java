@@ -38,13 +38,14 @@ public class Register  extends AppCompatActivity {
             public void onClick(View v) {
                 if (!emptyValidation()) {
                     dbUser.addUser(new User(edtUserName.getText().toString(), edtPassword.getText().toString(),edtFullName.getText().toString()));
-                    Toast.makeText(Register.this, "Added User", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Added User", Toast.LENGTH_SHORT).show();
+                    edtFullName.setText("");
                     edtUserName.setText("");
                     edtPassword.setText("");
                     Intent intent = new Intent(Register.this,Login.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(Register.this, "Empty Fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Empty Fields", Toast.LENGTH_SHORT).show();
                 }
             }
         });
