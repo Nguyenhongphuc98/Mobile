@@ -88,10 +88,11 @@
             android:drawablePadding="16dp"
             android:textSize="18sp"
             android:gravity="start"
-            android:onClick="onMyClick"
+            android:onClick="onClick"
             android:clickable="true"
             android:padding="10dp"
             android:textColor="#a6aff1"/>
+
 
         <TextView
             android:id="@+id/tvSettingAccount"

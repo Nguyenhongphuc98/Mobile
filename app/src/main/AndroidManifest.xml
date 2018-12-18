@@ -24,8 +24,6 @@
 
         <activity android:name=".Activity.Login"></activity>
 
-        <activity android:name=".Activity.Menu"></activity>
-
         <activity android:name=".Activity.ListBirthdayActivity"></activity>
 
         <activity android:name=".Activity.NewBirthdayActivity"></activity>
