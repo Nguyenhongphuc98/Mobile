@@ -75,7 +75,7 @@ public class ListBirthdayActivity extends Activity  implements View.OnClickListe
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            Toast.makeText(ListBirthdayActivity.this,"ok da nhan duoc thong tin",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"ok da nhan duoc thong tin",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -83,7 +83,7 @@ public class ListBirthdayActivity extends Activity  implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnAddBirthday:
-                Intent intent=new Intent(ListBirthdayActivity.this,NewBirthdayActivity.class);
+                Intent intent=new Intent(getApplicationContext(),NewBirthdayActivity.class);
                 startActivityForResult(intent,ADDBIRTHDAYCODE);
                 break;
     }

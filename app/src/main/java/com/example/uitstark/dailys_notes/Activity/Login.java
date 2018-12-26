@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import android.content.Context;
 import com.example.uitstark.dailys_notes.DTO.User;
 import com.example.uitstark.dailys_notes.DatabaseManage.UserDAL;
 import com.example.uitstark.dailys_notes.R;
@@ -33,6 +33,8 @@ public class Login extends Activity {
         edtUserName= findViewById(R.id.username_login);
         edtPassword=findViewById(R.id.password_login);
 
+
+        Toast.makeText(getApplicationContext(), "LOADING ", Toast.LENGTH_LONG).show();
         final UserDAL dbUser = new UserDAL(this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -43,17 +45,20 @@ public class Login extends Activity {
                     if(user!=null) {
                         Bundle mBundle = new Bundle();
                         mBundle.putString("user",user.getEmail());
-                        Intent intent = new Intent(Login.this,UserActivity.class);
+                        Intent intent = new Intent(getApplicationContext(),UserActivity.class);
                         intent.putExtras(mBundle);
                         startActivity(intent);
-                        Toast.makeText(Login.this,"Welcome " + user.getEmail(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Welcome " + user.getEmail(),Toast.LENGTH_SHORT).show();
 
                     } else {
-                        Toast.makeText(Login.this, "User not found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "User not found", Toast.LENGTH_SHORT).show();
+
+                        edtUserName.setText("");
                         edtPassword.setText("");
                     }
                 } else{
-                    Toast.makeText(Login.this, "Empty Fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Empty Fields", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -61,7 +66,7 @@ public class Login extends Activity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Login.this,Register.class);
+                Intent intent = new Intent(getApplicationContext(),Register.class);
                 startActivity(intent);
             }
         });
