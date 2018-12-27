@@ -27,7 +27,6 @@ public class BirthDay implements Serializable{
     }
 
     public BirthDay(int id_user, String name, String bornDay,String timeRemind, String note,int status,int color) {
-        this.id = id;
         this.id_user = id_user;
         this.name = name;
         this.bornDay = bornDay;

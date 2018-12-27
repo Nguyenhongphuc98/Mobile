@@ -12,28 +12,13 @@ import java.util.List;
 
 public class UserDAL extends DatabaseHandler {
 
-    private static final String TABLE_USER_NAME = "user";
 
-    private static final String KEY_USER__ID = "id";
-    private static final String KEY_USER__NAME = "name";
-    private static final String KEY_USER__EMAIL = "email";
-
-    private static final String KEY_USER__PASSWORD = "password";
 
     public UserDAL(Context context) {
 
         super(context);
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        String strCreateTableUser=
-                String.format("CREATE TABLE %s" +
-                                "(%s INTEGER PRIMARY KEY, %s TEXT, %s TEXT, %s TEXT)",
-                        TABLE_USER_NAME, KEY_USER__ID, KEY_USER__NAME, KEY_USER__EMAIL,KEY_USER__PASSWORD);
-
-        db.execSQL(strCreateTableUser);
-    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -47,24 +32,30 @@ public class UserDAL extends DatabaseHandler {
         SQLiteDatabase db = this.getReadableDatabase();
         User user = null;
 
-        Cursor cursor = db.query(TABLE_USER_NAME, new String[]{KEY_USER__ID,
+        Cursor cursor = db.query(TABLE_USER_NAME, new String[]{KEY_USER__ID,KEY_USER__NAME,
                         KEY_USER__EMAIL, KEY_USER__PASSWORD}, KEY_USER__EMAIL + "=? and " + KEY_USER__PASSWORD + "=?",
                 new String[]{email, password}, null, null, null, "1");
         if (cursor != null)
             cursor.moveToFirst();
         if (cursor != null && cursor.getCount() > 0) {
-            user = new User(cursor.getString(1), cursor.getString(2));
+            user = new User(
+                    Integer.parseInt(cursor.getString(0)) ,
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3));
         }
-        // return user
+
+        db.close();
         return user;
     }
     public void addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_USER__NAME, user.getFullName());
         values.put(KEY_USER__EMAIL, user.getEmail());
         values.put(KEY_USER__PASSWORD,user.getPassword());
-        values.put(KEY_USER__NAME, user.getFullName());
+
 
 
         //if value is empty -> don't insert -> null
@@ -79,6 +70,8 @@ public class UserDAL extends DatabaseHandler {
         if(cursor != null)
             cursor.moveToFirst();
         User user = new User(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+        db.close();
+
         return user;
     }
 
@@ -96,6 +89,8 @@ public class UserDAL extends DatabaseHandler {
             userList.add(user);
             cursor.moveToNext();
         }
+
+        db.close();
         return userList;
     }
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,12 +26,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListBirthdayActivity extends Activity  implements View.OnClickListener, View.OnCreateContextMenuListener {
+
     Button buttonAddBirthday;
     ListView listViewBirthday;
     List<BirthDay> listBirthday;
     BirthdayDAL birthDayDAL;
+
     public static final int ADDBIRTHDAYCODE =0;
     public static final int ADDBIRTHDAYRESULT =1;
+
+    private String currenUser;
 
     BirthdayAdapter adapter;
 
@@ -44,13 +49,19 @@ public class ListBirthdayActivity extends Activity  implements View.OnClickListe
         listBirthday=new ArrayList<>();
         birthDayDAL =new BirthdayDAL(ListBirthdayActivity.this);
 
+        Bundle bundle = getIntent().getExtras();
+        currenUser=bundle.getString("idCurrentUser");
+
+        Log.e("ERRRR","in list birthday");
         try {
-            LoadDataFromDatabase();
+            LoadDataFromDatabase(currenUser);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         registerForContextMenu(listViewBirthday);
+       // Toast.makeText(getApplicationContext(),"On list birthday",Toast.LENGTH_SHORT).show();
+
     }
 
     void LinkView(){
@@ -59,8 +70,17 @@ public class ListBirthdayActivity extends Activity  implements View.OnClickListe
         listViewBirthday=findViewById(R.id.lvBirthday);
     }
 
-    private void LoadDataFromDatabase() throws ParseException {
-        listBirthday= birthDayDAL.getAllBirthday();
+    private void LoadDataFromDatabase(String idCurrentUser) throws ParseException {
+
+        Toast.makeText(getApplicationContext(),idCurrentUser,Toast.LENGTH_SHORT).show();
+
+        int id=Integer.parseInt(idCurrentUser);
+        if(id==0)
+            Toast.makeText(getApplicationContext(),"oooooo",Toast.LENGTH_SHORT).show();
+
+        listBirthday= birthDayDAL.getBirthdayOf(id);
+        //listBirthday= birthDayDAL.getBirthdayOf(0);
+        Log.e("ERRRR","loaded list birthday from database");
         adapter=new BirthdayAdapter(this,R.layout.customrow_listview_birthday,listBirthday);
         adapter.notifyDataSetChanged();
         listViewBirthday.setAdapter(adapter);
@@ -71,7 +91,7 @@ public class ListBirthdayActivity extends Activity  implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==ADDBIRTHDAYCODE && resultCode==ADDBIRTHDAYRESULT){
             try {
-                LoadDataFromDatabase();
+                LoadDataFromDatabase(currenUser);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -83,7 +103,13 @@ public class ListBirthdayActivity extends Activity  implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnAddBirthday:
+
+                Bundle mBundle = new Bundle();
+                mBundle.putString("idCurrentUser",currenUser);
+
                 Intent intent=new Intent(getApplicationContext(),NewBirthdayActivity.class);
+                intent.putExtras(mBundle);
+
                 startActivityForResult(intent,ADDBIRTHDAYCODE);
                 break;
     }

@@ -50,10 +50,15 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
     PendingIntent pendingIntent;
     Calendar   calendar=Calendar.getInstance();
 
+    String currentUser;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_birthday);
+
+        Bundle bundle = getIntent().getExtras();
+        currentUser=bundle.getString("idCurrentUser");
 
         LinkView();
         SetAction();
@@ -79,6 +84,7 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+
         if(v==buttonChooseDateBirthday){
             d=calendar.get(Calendar.DAY_OF_MONTH);
             m=calendar.get(Calendar.MONTH);
@@ -125,7 +131,8 @@ public class NewBirthdayActivity extends Activity implements View.OnClickListene
                 String name= String.valueOf(editTextName.getText());
                 String relationship=String.valueOf(editTextRelationship.getText());
 
-                BirthDay birthDay=new BirthDay(1,name,born,time,relationship,0, Color.GREEN);
+                BirthDay birthDay=new BirthDay(Integer.parseInt(currentUser),name,born,time,relationship,0, Color.GREEN);
+                //BirthDay birthDay=new BirthDay(0,name,born,time,relationship,0, Color.GREEN);
                 birthdayDAL.addBirthday(birthDay);
 
 

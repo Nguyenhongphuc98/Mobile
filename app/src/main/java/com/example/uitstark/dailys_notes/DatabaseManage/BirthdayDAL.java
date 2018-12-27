@@ -17,31 +17,16 @@ import java.util.Date;
 import java.util.List;
 
 public class BirthdayDAL extends DatabaseHandler {
+
+
+
+
     public BirthdayDAL(Context context) {
         super(context);
     }
 
-    private static final String TABLE_BIRTHDAY_NAME = "birthday";
-
-    private static final String KEY_BIRTHDAY_ID = "id";
-    private static final String KEY_BIRTHDAY_IDUSER = "iduser";
-    private static final String KEY_BIRTHDAY_NAME = "friendname";
-    private static final String KEY_BIRTHDAY_DATE = "date";
-    private static final String KEY_BIRTHDAY_TIME = "time";
-    private static final String KEY_BIRTHDAY_DETAIL     = "detail";
-    private static final String KEY_BIRTHDAY_STATUS = "status"; //1 da cap nhat len sever, 0 chua
-    private static final String KEY_BIRTHDAY_COLOR ="color";
 
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        String strCreateTableBirthday=
-                String.format("CREATE TABLE %s" +
-                                "(%s INTEGER PRIMARY KEY,%s INTEGER, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s INTEGER,%s INTEGER)",
-                        TABLE_BIRTHDAY_NAME, KEY_BIRTHDAY_ID,KEY_BIRTHDAY_IDUSER,
-                        KEY_BIRTHDAY_NAME, KEY_BIRTHDAY_DATE, KEY_BIRTHDAY_TIME,KEY_BIRTHDAY_DETAIL,KEY_BIRTHDAY_STATUS, KEY_BIRTHDAY_COLOR);
-        db.execSQL(strCreateTableBirthday);
-    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -54,6 +39,7 @@ public class BirthdayDAL extends DatabaseHandler {
 
         ContentValues values = new ContentValues();
         values.put(KEY_BIRTHDAY_IDUSER, birthDay.getId_user());
+       // Log.e("IDUSER1",String.valueOf(birthDay.getId_user()));
         values.put(KEY_BIRTHDAY_NAME,birthDay.getName());
         values.put(KEY_BIRTHDAY_DATE, birthDay.getBornDay());
         values.put(KEY_BIRTHDAY_TIME,birthDay.getTimeRemind());
@@ -86,15 +72,20 @@ public class BirthdayDAL extends DatabaseHandler {
 
             birthDay= new BirthDay(idBirthday,idUserBirthday,nameFriend ,bornDate,timeRemind ,detail,status,color);
         }
+
+        db.close();
         return birthDay;
     }
 
-    public List<BirthDay> getAllBirthday() throws ParseException {
-        List<BirthDay>  birthDayList = new ArrayList<>();
-        String query = "SELECT * FROM " + TABLE_BIRTHDAY_NAME;
+    public List<BirthDay> getBirthdayOf(int IdUser) throws ParseException {
 
+        List<BirthDay>  birthDayList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
+
+        Log.e("IDUSER",String.valueOf(IdUser));
+
+        //Cursor cursor = db.query(TABLE_BIRTHDAY_NAME, null, KEY_USER__ID + " = ?", new String[] { String.valueOf(IdUser) },null, null, null);
+        Cursor cursor = db.query(TABLE_BIRTHDAY_NAME, null, KEY_BIRTHDAY_IDUSER + " = ?", new String[] { String.valueOf(IdUser) },null, null, null);
         cursor.moveToFirst();
 
         while(!cursor.isAfterLast()) {
@@ -110,6 +101,40 @@ public class BirthdayDAL extends DatabaseHandler {
             birthDayList.add(birthDay);
             cursor.moveToNext();
         }
+
+        db.close();
+        return birthDayList;
+    }
+
+    public List<BirthDay> getAllBirthday() throws ParseException {
+       // Log.e("ERRRR","1");
+        List<BirthDay>  birthDayList = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_BIRTHDAY_NAME;
+
+       // Log.e("ERRRR","2");
+        SQLiteDatabase db = this.getReadableDatabase();
+       // Log.e("ERRRR","3");
+        Cursor cursor = db.rawQuery(query, null);
+      //  Log.e("ERRRR","4");
+        cursor.moveToFirst();
+
+
+
+        while(!cursor.isAfterLast()) {
+            int idBirthday=cursor.getInt(0);
+            int idUserBirthday=cursor.getInt(1);
+            String nameFriend=cursor.getString(2);
+            String bornDate= cursor.getString(3);
+            String timeRemind= cursor.getString(4);
+            String detail=cursor.getString(5);
+            int status=cursor.getInt(6);
+            int color=cursor.getInt(7);
+            BirthDay birthDay = new BirthDay(idBirthday,idUserBirthday,nameFriend ,bornDate,timeRemind ,detail,status,color);
+            birthDayList.add(birthDay);
+            cursor.moveToNext();
+        }
+
+        db.close();
         return birthDayList;
     }
 
