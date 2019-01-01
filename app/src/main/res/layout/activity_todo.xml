@@ -34,7 +34,7 @@
 
 
     <EditText
-        android:id="@+id/edt_titleNote"
+        android:id="@+id/edt_titleToDo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -61,7 +61,7 @@
 
 
     <EditText
-        android:id="@+id/edt_contentNote"
+        android:id="@+id/edt_contentToDo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -95,14 +95,14 @@
         android:layout_marginLeft="70dp">
 
         <TextView
-            android:id="@+id/tvTimeBirthDay"
+            android:id="@+id/tvTimeToDo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Time "
             android:textSize="18sp"/>
 
         <Button
-            android:id="@+id/btnTimeRemindBirthday"
+            android:id="@+id/btnTimeRemindToDo"
             android:layout_width="60dp"
             android:layout_height="40dp"
             android:text="..."
@@ -116,14 +116,14 @@
         android:paddingTop="10dp" />
 
     <Button
-        android:id="@+id/btnSaveNote"
+        android:id="@+id/btnSaveToDo"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:clickable="true"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Save Note"
+        android:text="Save ToDo"
         android:textAllCaps="true"
         android:textColor="#fff"
         android:textSize="10sp" />

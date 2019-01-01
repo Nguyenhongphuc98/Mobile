@@ -8,30 +8,30 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.uitstark.dailys_notes.DTO.BirthDay;
-import com.example.uitstark.dailys_notes.DTO.Note;
+import com.example.uitstark.dailys_notes.DTO.ToDo;
 import com.example.uitstark.dailys_notes.R;
 
 import java.util.List;
 
-public class NoteAdapter extends BaseAdapter {
+public class ToDoAdapter extends BaseAdapter {
 
     private Context context;
     private int layout;
-    private List<Note> listNote;
+    private List<ToDo> listToDo;
 
     public static class ViewHolder{
-        TextView soThuTu, title;
+        TextView soThuTu, title, time;
     }
 
-    public NoteAdapter(Context context, int layout, List<Note> listNote){
+    public ToDoAdapter(Context context, int layout, List<ToDo> listToDo){
         this.context=context;
         this.layout=layout;
-        this.listNote=listNote;
+        this.listToDo=listToDo;
     }
 
     @Override
     public int getCount() {
-        return listNote.size();
+        return listToDo.size();
     }
 
     @Override
@@ -52,17 +52,16 @@ public class NoteAdapter extends BaseAdapter {
         if(viewRow==null){
             viewRow=inflater.inflate(layout,parent,false);
             ViewHolder holder=new ViewHolder();
-            holder.soThuTu=viewRow.findViewById(R.id.tvAvatarNote);
-            holder.title=viewRow.findViewById(R.id.tvTitleNote);
-
-
+            holder.soThuTu=viewRow.findViewById(R.id.tvAvatar);
+            holder.title=viewRow.findViewById(R.id.tvTitleToDo);
+            holder.time=viewRow.findViewById(R.id.tvTimeToDo);
             viewRow.setTag(holder);
         }
 
         ViewHolder viewHolder= (ViewHolder) viewRow.getTag();
-        viewHolder.soThuTu.setText(String.valueOf(listNote.get(position).getId()));
-        viewHolder.title.setText(listNote.get(position).getTitle());
-
+        viewHolder.soThuTu.setText(String.valueOf(listToDo.get(position).getId()));
+        viewHolder.title.setText(listToDo.get(position).getTitle());
+        viewHolder.time.setText(listToDo.get(position).getTime());
         return viewRow;
     }
 }

@@ -37,6 +37,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     protected static final String KEY_NOTE__CONTENT = "content";
 
+    // TODOList===============================
+    protected static final String TABLE_TODO_NAME = "todo";
+    protected static final String KEY_TODO__ID = "id";
+    protected static final String KEY_TODO__IDUSER = "iduser";
+    protected static final String KEY_TODO__TITLE = "title";
+    protected static final String KEY_TODO__CONTENT = "content";
+    protected static final String KEY_TODO_TIME = "time";
+
+
     // BIRTHDAY==================================
     protected static final String TABLE_BIRTHDAY_NAME = "birthday";
 
@@ -67,13 +76,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(strCreateTableUser);
 
 
-        //===============USER=============================
+        //===============NOTE=============================
         String strCreateTableNote=
                 String.format("CREATE TABLE %s" +
                                 "(%s INTEGER PRIMARY KEY,%s INTEGER, %s TEXT, %s TEXT)",
                         TABLE_NOTE_NAME, KEY_NOTE__ID, KEY_NOTE__IDUSER, KEY_NOTE__TITLE,KEY_NOTE__CONTENT);
 
         db.execSQL(strCreateTableNote);
+
+
+        //===============TODOLIST=============================
+        String strCreateTableToDo=
+                String.format("CREATE TABLE %s" +
+                                "(%s INTEGER PRIMARY KEY,%s INTEGER, %s TEXT, %s TEXT, %s TEXT)",
+                        TABLE_TODO_NAME, KEY_TODO__ID, KEY_TODO__IDUSER, KEY_TODO__TITLE,KEY_TODO__CONTENT,KEY_TODO_TIME);
+
+        db.execSQL(strCreateTableToDo);
+
         //=============BIRTHDAY============================
         String strCreateTableBirthday=
                 String.format("CREATE TABLE %s" +

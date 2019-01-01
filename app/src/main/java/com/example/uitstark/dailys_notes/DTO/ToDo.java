@@ -8,18 +8,18 @@ public class ToDo {
     private int id_user;
     private String title;
     private String content;
-    private Date time;
+    private String time;
 
 
-    public ToDo(int id, int id_user, String title, String content, Date time) {
+    public ToDo(int id, int id_user, String title, String content, String time) {
         this.id = id;
         this.id_user = id_user;
         this.title = title;
         this.content = content;
         this.time = time;
     }
-    public ToDo(int id_user, String title, String content, Date time) {
-        this.id = id;
+
+    public ToDo(int id_user, String title, String content, String time) {
         this.id_user = id_user;
         this.title = title;
         this.content = content;
@@ -58,12 +58,11 @@ public class ToDo {
         this.content = content;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
-
 }

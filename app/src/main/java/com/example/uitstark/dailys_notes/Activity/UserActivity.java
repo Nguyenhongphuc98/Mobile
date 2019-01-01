@@ -17,6 +17,7 @@ public class UserActivity extends AppCompatActivity {
     private TextView tvUserNameMenu;
     private TextView tvRemindBirthday ;
     private TextView tvDiary;
+    private TextView tvToDo;
     private TextView tvLogOut;
 
     private String currenUser;
@@ -27,6 +28,7 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         tvUserNameMenu=findViewById(R.id.username_menu);
         tvDiary= findViewById(R.id.tvDiary);
+        tvToDo=findViewById(R.id.tvToDoList);
 
         tvRemindBirthday=findViewById(R.id.tvmenuremindbirthday);
         tvLogOut=findViewById(R.id.tvlogout);
@@ -61,6 +63,14 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(getApplicationContext(),ListNoteActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tvToDo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ListToDoActivity.class);
                 startActivity(intent);
             }
         });
