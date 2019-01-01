@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/layer_3"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingTop="10dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    android:weightSum="1"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Title"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="26sp" />
+
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/edt_titleNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.03"
+        android:background="@android:color/transparent"
+
+        android:drawablePadding="16dp"
+        android:ems="10"
+        android:hint="Title name"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColorHint="#fff"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#FFF"
+        android:paddingTop="10dp" />
+
+
+
+    <EditText
+        android:id="@+id/edt_contentNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.05"
+        android:background="@android:color/transparent"
+
+        android:drawablePadding="16dp"
+        android:ems="10"
+
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColorHint="#fff"
+        android:textSize="16sp" />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#FFF"
+        android:paddingTop="10dp" />
+
+    <Button
+        android:id="@+id/btnSaveNote"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:padding="10dp"
+        android:text="Register"
+        android:textAllCaps="true"
+        android:textColor="#fff"
+        android:textSize="10sp" />
+
+
+
+
+</LinearLayout>

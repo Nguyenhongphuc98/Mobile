@@ -32,6 +32,10 @@
 
         <activity android:name=".Activity.UserActivity"></activity>
 
+
+        <activity android:name=".Activity.ListNoteActivity" />
+
+
         <receiver android:name=".ServiceManage.AlarmReceiver"/>
 
     </application>
