@@ -39,6 +39,8 @@
 
         <activity android:name=".Activity.ListNoteActivity" />
         <activity android:name=".Activity.ToDoActivity" />
+        <activity android:name=".Activity.NoteActivity" />
+        <activity android:name=".Activity.ListToDoActivity" />
 
 
         <receiver android:name=".ServiceManage.AlarmReceiver"/>

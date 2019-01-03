@@ -62,7 +62,10 @@ public class UserActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                Bundle mBundle = new Bundle();
+                mBundle.putString("idCurrentUser",currenUser);
                 Intent intent= new Intent(getApplicationContext(),ListNoteActivity.class);
+                intent.putExtras(mBundle);
                 startActivity(intent);
             }
         });
@@ -70,7 +73,10 @@ public class UserActivity extends AppCompatActivity {
         tvToDo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle mBundle = new Bundle();
+                mBundle.putString("idCurrentUser",currenUser);
                 Intent intent = new Intent(getApplicationContext(),ListToDoActivity.class);
+                intent.putExtras(mBundle);
                 startActivity(intent);
             }
         });
