@@ -5,7 +5,7 @@
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/layer_3"
+    android:background="@drawable/login_ngan"
     android:paddingBottom="16dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
@@ -20,7 +20,7 @@
         android:orientation="horizontal"
         android:weightSum="1">
 
-        <TextView
+        <!--<TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -36,10 +36,10 @@
             android:text="Daily note"
             android:textAllCaps="false"
             android:textColor="#67e1ff"
-            android:textSize="26sp" />
+            android:textSize="26sp" /> -->
     </LinearLayout>
 
-    <ImageView
+    <!--<ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
@@ -48,57 +48,32 @@
         android:padding="0dp"
         android:src="@drawable/open_book"
         />
-
-    <EditText
-        android:id="@+id/username_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/transparent"
-        android:drawableStart="@drawable/shape_02"
-        android:drawablePadding="16dp"
-        android:ems="10"
-        android:hint="@string/hintedittextusername"
-        android:inputType="textEmailAddress"
-        android:maxLines="1"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textColorHint="#fff"
-        android:textSize="16sp"
-        android:layout_weight="0.03" />
-
+        -->
     <!--<view-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="1dp"-->
         <!--android:layout_marginTop="5dp"-->
         <!--android:background="#fff" />-->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:paddingTop="10dp"
-        android:background="#FFF"/>
-
     <EditText
         android:id="@+id/password_login"
-        android:layout_width="match_parent"
+        android:layout_width="334dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
+        android:layout_weight="0.05"
         android:background="@android:color/transparent"
-        android:drawableStart="@drawable/shape_03"
         android:drawablePadding="16dp"
+        android:drawableStart="@drawable/shape_03"
         android:ems="10"
-        android:hint="@string/hintedittextpass"
 
+        android:hint="@string/hintedittextpass"
         android:inputType="textEmailAddress"
         android:maxLines="1"
-        android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:paddingStart="10dp"
         android:textColorHint="#fff"
-        android:textSize="16sp"
-        android:layout_weight="0.05" />
+        android:textSize="16sp" />
 
     <!--<view-->
         <!--android:layout_width="match_parent"-->
@@ -109,13 +84,38 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:paddingTop="10dp"
-        android:background="#FFF"/>
+        android:background="#FFF"
+        android:paddingTop="10dp" />
+
+    <EditText
+        android:id="@+id/username_login"
+        android:layout_width="334dp"
+        android:layout_height="39dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.03"
+        android:background="@android:color/transparent"
+        android:drawablePadding="16dp"
+        android:drawableStart="@drawable/shape_02"
+        android:ems="10"
+        android:hint="@string/hintedittextusername"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:textColorHint="#fff"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#FFF"
+        android:paddingTop="10dp" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_width="279dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
 
         android:clickable="true"
@@ -127,8 +127,8 @@
 
     <Button
         android:id="@+id/btnRegister_Login"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
 
         android:clickable="true"
@@ -137,7 +137,6 @@
         android:textAllCaps="true"
         android:textColor="#fff"
         android:textSize="18sp" />
-
 
 
 </LinearLayout>

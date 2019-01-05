@@ -52,16 +52,16 @@
             android:id="@+id/tvDiary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Diary"
+            android:clickable="true"
             android:drawableLeft="@drawable/dashboard_icon"
-            android:textAllCaps="false"
             android:drawablePadding="16dp"
-            android:textSize="18sp"
             android:gravity="start"
             android:onClick="onClick"
-            android:clickable="true"
             android:padding="10dp"
-            android:textColor="#a6aff1"/>
+            android:text="Diary"
+            android:textAllCaps="false"
+            android:textColor="#a6aff1"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvToDoList"
