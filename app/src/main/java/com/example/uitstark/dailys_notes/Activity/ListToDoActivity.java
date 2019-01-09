@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -55,7 +56,8 @@ public class ListToDoActivity extends AppCompatActivity  implements View.OnClick
 
         listToDo=new ArrayList<>();
         toDoDAL =new ToDoDAL(ListToDoActivity.this);
-
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         Bundle bundle = getIntent().getExtras();
         currentUser=bundle.getString("idCurrentUser");
         try {

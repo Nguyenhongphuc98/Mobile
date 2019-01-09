@@ -2,6 +2,7 @@ package com.example.uitstark.dailys_notes.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +35,8 @@ public class UserActivity extends AppCompatActivity {
         tvRemindBirthday=findViewById(R.id.tvmenuremindbirthday);
         tvLogOut=findViewById(R.id.tvlogout);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         Bundle bundle = getIntent().getExtras();
 

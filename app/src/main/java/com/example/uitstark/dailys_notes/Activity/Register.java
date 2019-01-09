@@ -3,6 +3,7 @@ package com.example.uitstark.dailys_notes.Activity;
 import android.app.ActivityManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -34,6 +35,8 @@ public class Register  extends AppCompatActivity {
         edtPassword= findViewById(R.id.passwordRegister);
         getEdtPasswordConfirm= findViewById(R.id.passwordRegisterConfirm);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         final UserDAL dbUser = new UserDAL(this);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
