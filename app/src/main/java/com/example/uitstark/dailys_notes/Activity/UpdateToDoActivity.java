@@ -133,7 +133,7 @@ public class UpdateToDoActivity extends AppCompatActivity implements View.OnClic
             String title=editTextUpdateTitle.getText().toString();
             String content= String.valueOf(editTextUpdateContent.getText());
             String time=textViewTimeUpdate.getText().toString();
-            ToDo toDo=new ToDo(Integer.parseInt(currentUser),title,content,time);
+            ToDo toDo=new ToDo(Integer.parseInt(currentUser),title,content,time,Color.WHITE);
             toDoDAL.updateToDo(Integer.parseInt(currentToDo),Integer.parseInt(currentUser),toDo);
             //set notify
             alarmManager= (AlarmManager) getSystemService(ALARM_SERVICE);

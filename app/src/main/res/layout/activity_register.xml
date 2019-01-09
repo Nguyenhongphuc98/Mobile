@@ -43,7 +43,6 @@
         android:layout_marginTop="10dp"
         android:layout_weight="0.03"
         android:background="@android:color/transparent"
-
         android:drawablePadding="16dp"
         android:ems="10"
         android:hint="Full Name"
@@ -51,6 +50,7 @@
         android:maxLines="1"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:textColor="@color/white"
         android:textColorHint="#fff"
         android:textSize="16sp" />
 
@@ -68,7 +68,6 @@
         android:layout_marginTop="10dp"
         android:layout_weight="0.03"
         android:background="@android:color/transparent"
-
         android:drawablePadding="16dp"
         android:ems="10"
         android:hint="@string/hintedittextusername"
@@ -76,9 +75,9 @@
         android:maxLines="1"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:textColor="@color/white"
         android:textColorHint="#fff"
         android:textSize="16sp" />
-
 
 
     <TextView
@@ -95,7 +94,6 @@
         android:layout_marginTop="10dp"
         android:layout_weight="0.05"
         android:background="@android:color/transparent"
-
         android:drawablePadding="16dp"
         android:ems="10"
         android:hint="Password"
@@ -103,9 +101,9 @@
         android:maxLines="1"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:textColor="@color/white"
         android:textColorHint="#fff"
         android:textSize="16sp" />
-
 
 
     <TextView
@@ -123,7 +121,6 @@
         android:layout_marginTop="10dp"
         android:layout_weight="0.05"
         android:background="@android:color/transparent"
-
         android:drawablePadding="16dp"
         android:ems="10"
         android:hint="Password Confirm"
@@ -131,9 +128,9 @@
         android:maxLines="1"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:textColor="@color/white"
         android:textColorHint="#fff"
         android:textSize="16sp" />
-
 
 
     <TextView
@@ -153,8 +150,6 @@
         android:textAllCaps="true"
         android:textColor="#fff"
         android:textSize="10sp" />
-
-
 
 
 </LinearLayout>

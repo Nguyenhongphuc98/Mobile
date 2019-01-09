@@ -107,7 +107,7 @@ public class ToDoActivity extends AppCompatActivity implements View.OnClickListe
             String title=editTextTitle.getText().toString();
             String content= String.valueOf(editTextContent.getText());
             String time=textViewTime.getText().toString();
-            ToDo toDo=new ToDo(Integer.parseInt(currentUser),title,content,time);
+            ToDo toDo=new ToDo(Integer.parseInt(currentUser),title,content,time,Color.WHITE);
             toDoDAL.addToDo(toDo);
             //set notify
             alarmManager= (AlarmManager) getSystemService(ALARM_SERVICE);

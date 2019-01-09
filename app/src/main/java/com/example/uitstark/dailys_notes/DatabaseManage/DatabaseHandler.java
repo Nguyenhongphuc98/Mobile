@@ -44,6 +44,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     protected static final String KEY_TODO__TITLE = "title";
     protected static final String KEY_TODO__CONTENT = "content";
     protected static final String KEY_TODO_TIME = "time";
+    protected static final String KEY_TODO_COLOR= "color";
 
 
     // BIRTHDAY==================================
@@ -88,8 +89,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //===============TODOLIST=============================
         String strCreateTableToDo=
                 String.format("CREATE TABLE %s" +
-                                "(%s INTEGER PRIMARY KEY,%s INTEGER, %s TEXT, %s TEXT, %s TEXT)",
-                        TABLE_TODO_NAME, KEY_TODO__ID, KEY_TODO__IDUSER, KEY_TODO__TITLE,KEY_TODO__CONTENT,KEY_TODO_TIME);
+                                "(%s INTEGER PRIMARY KEY,%s INTEGER, %s TEXT, %s TEXT, %s TEXT,%s INTEGER)",
+                        TABLE_TODO_NAME, KEY_TODO__ID, KEY_TODO__IDUSER, KEY_TODO__TITLE,KEY_TODO__CONTENT,KEY_TODO_TIME,KEY_TODO_COLOR);
 
         db.execSQL(strCreateTableToDo);
 

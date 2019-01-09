@@ -34,6 +34,7 @@ public class ToDoDAL extends DatabaseHandler {
         values.put(KEY_TODO__TITLE,toDo.getTitle());
         values.put(KEY_TODO__CONTENT, toDo.getContent());
         values.put(KEY_TODO_TIME,toDo.getTime());
+        values.put(KEY_TODO_COLOR,toDo.getColor());
 
         //if value is empty -> don't insert -> null
         db.insert(TABLE_TODO_NAME, null, values);
@@ -52,7 +53,8 @@ public class ToDoDAL extends DatabaseHandler {
             String title=cursor.getString(2);
             String content= cursor.getString(3);
             String time= cursor.getString(4);
-            toDo= new ToDo(idToDo,idUserToDo,title,content,time);
+            int color=cursor.getInt(5);
+            toDo= new ToDo(idToDo,idUserToDo,title,content,time,color);
         }
 
         db.close();
@@ -72,7 +74,8 @@ public class ToDoDAL extends DatabaseHandler {
             String title=cursor.getString(2);
             String content= cursor.getString(3);
             String time= cursor.getString(4);
-            ToDo toDo= new ToDo(idToDo,idUserToDo,title,content,time);
+            int color=cursor.getInt(5);
+            ToDo toDo= new ToDo(idToDo,idUserToDo,title,content,time,color);
             toDoList.add(toDo);
             cursor.moveToNext();
         }
@@ -93,7 +96,8 @@ public class ToDoDAL extends DatabaseHandler {
             String title=cursor.getString(2);
             String content= cursor.getString(3);
             String time= cursor.getString(4);
-            ToDo toDo= new ToDo(idToDo,idUserToDo,title,content,time);
+            int color=cursor.getInt(5);
+            ToDo toDo= new ToDo(idToDo,idUserToDo,title,content,time,color);
             toDoList.add(toDo);
             cursor.moveToNext();
         }

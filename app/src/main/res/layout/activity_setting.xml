@@ -44,13 +44,14 @@
         android:layout_weight="0.03"
         android:background="@android:color/transparent"
         android:drawablePadding="16dp"
-        android:enabled="false"
         android:ems="10"
+        android:enabled="false"
         android:hint="Full Name"
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:textColor="@color/white"
         android:textColorHint="#fff"
         android:textSize="16sp" />
 
@@ -69,13 +70,14 @@
         android:layout_weight="0.03"
         android:background="@android:color/transparent"
         android:drawablePadding="16dp"
-        android:enabled="false"
         android:ems="10"
+        android:enabled="false"
         android:hint="@string/hintedittextusername"
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:textColor="@color/white"
         android:textColorHint="#fff"
         android:textSize="16sp" />
 
@@ -93,7 +95,6 @@
         android:layout_marginTop="10dp"
         android:layout_weight="0.05"
         android:background="@android:color/transparent"
-
         android:drawablePadding="16dp"
         android:ems="10"
         android:hint="Old Password"
@@ -101,6 +102,7 @@
         android:maxLines="1"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:textColor="@color/white"
         android:textColorHint="#fff"
         android:textSize="16sp" />
 
@@ -118,7 +120,6 @@
         android:layout_marginTop="10dp"
         android:layout_weight="0.05"
         android:background="@android:color/transparent"
-
         android:drawablePadding="16dp"
         android:ems="10"
         android:hint="New Password"
@@ -126,6 +127,7 @@
         android:maxLines="1"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:textColor="@color/white"
         android:textColorHint="#fff"
         android:textSize="16sp" />
 
@@ -145,7 +147,6 @@
         android:layout_marginTop="10dp"
         android:layout_weight="0.05"
         android:background="@android:color/transparent"
-
         android:drawablePadding="16dp"
         android:ems="10"
         android:hint="Password Confirm"
@@ -153,6 +154,7 @@
         android:maxLines="1"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:textColor="@color/white"
         android:textColorHint="#fff"
         android:textSize="16sp" />
 
