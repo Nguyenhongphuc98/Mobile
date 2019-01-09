@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/layer_3"
-    android:gravity="center"
+    android:background="@drawable/rectangle_2"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
+
     android:paddingLeft="16dp"
-    android:paddingTop="10dp"
     android:paddingRight="16dp"
-    android:paddingBottom="16dp"
     android:weightSum="1"
 
     >
@@ -26,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Register New Account "
+            android:text="NOTE"
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="26sp" />
@@ -36,7 +35,7 @@
 
 
     <EditText
-        android:id="@+id/fullNameRegister"
+        android:id="@+id/edt_titleUpdateNote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -46,7 +45,7 @@
 
         android:drawablePadding="16dp"
         android:ems="10"
-        android:hint="Full Name"
+        android:hint="Title name"
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:paddingStart="10dp"
@@ -60,79 +59,27 @@
         android:background="#FFF"
         android:paddingTop="10dp" />
 
+
     <EditText
-        android:id="@+id/usernameRegister"
+        android:id="@+id/edt_contentUpdateNote"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="381dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:layout_weight="0.03"
+        android:layout_weight="0.05"
         android:background="@android:color/transparent"
 
         android:drawablePadding="16dp"
         android:ems="10"
-        android:hint="@string/hintedittextusername"
+
         android:inputType="textEmailAddress"
-        android:maxLines="1"
+        android:maxLines="5"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:singleLine="false"
         android:textColorHint="#fff"
-        android:textSize="16sp" />
-
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#FFF"
-        android:paddingTop="10dp" />
-
-    <EditText
-        android:id="@+id/passwordRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_weight="0.05"
-        android:background="@android:color/transparent"
-
-        android:drawablePadding="16dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:maxLines="1"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textColorHint="#fff"
-        android:textSize="16sp" />
-
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#FFF"
-        android:paddingTop="10dp" />
-
-
-    <EditText
-        android:id="@+id/passwordRegisterConfirm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_weight="0.05"
-        android:background="@android:color/transparent"
-
-        android:drawablePadding="16dp"
-        android:ems="10"
-        android:hint="Password Confirm"
-        android:inputType="textPassword"
-        android:maxLines="1"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textColorHint="#fff"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        />
 
 
 
@@ -143,13 +90,14 @@
         android:paddingTop="10dp" />
 
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnUpdateNote"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:clickable="true"
+        android:gravity="center"
         android:padding="10dp"
-        android:text="Register"
+        android:text="Update Note"
         android:textAllCaps="true"
         android:textColor="#fff"
         android:textSize="10sp" />

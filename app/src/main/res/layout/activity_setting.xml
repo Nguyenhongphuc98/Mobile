@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Register New Account "
+            android:text="Account Settings"
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="26sp" />
@@ -36,15 +36,15 @@
 
 
     <EditText
-        android:id="@+id/fullNameRegister"
+        android:id="@+id/edt_fullNameSetting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:layout_weight="0.03"
         android:background="@android:color/transparent"
-
         android:drawablePadding="16dp"
+        android:enabled="false"
         android:ems="10"
         android:hint="Full Name"
         android:inputType="textEmailAddress"
@@ -61,15 +61,15 @@
         android:paddingTop="10dp" />
 
     <EditText
-        android:id="@+id/usernameRegister"
+        android:id="@+id/edt_usernameSetting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:layout_weight="0.03"
         android:background="@android:color/transparent"
-
         android:drawablePadding="16dp"
+        android:enabled="false"
         android:ems="10"
         android:hint="@string/hintedittextusername"
         android:inputType="textEmailAddress"
@@ -79,8 +79,6 @@
         android:textColorHint="#fff"
         android:textSize="16sp" />
 
-
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -88,7 +86,7 @@
         android:paddingTop="10dp" />
 
     <EditText
-        android:id="@+id/passwordRegister"
+        android:id="@+id/edt_passwordOldSetting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -98,7 +96,7 @@
 
         android:drawablePadding="16dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Old Password"
         android:inputType="textPassword"
         android:maxLines="1"
         android:paddingStart="10dp"
@@ -106,6 +104,30 @@
         android:textColorHint="#fff"
         android:textSize="16sp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#FFF"
+        android:paddingTop="10dp" />
+
+    <EditText
+        android:id="@+id/edt_passwordSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.05"
+        android:background="@android:color/transparent"
+
+        android:drawablePadding="16dp"
+        android:ems="10"
+        android:hint="New Password"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColorHint="#fff"
+        android:textSize="16sp" />
 
 
     <TextView
@@ -116,7 +138,7 @@
 
 
     <EditText
-        android:id="@+id/passwordRegisterConfirm"
+        android:id="@+id/edt_passwordSettingConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -135,7 +157,6 @@
         android:textSize="16sp" />
 
 
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -143,7 +164,7 @@
         android:paddingTop="10dp" />
 
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnSaveSetting"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
@@ -153,8 +174,6 @@
         android:textAllCaps="true"
         android:textColor="#fff"
         android:textSize="10sp" />
-
-
 
 
 </LinearLayout>

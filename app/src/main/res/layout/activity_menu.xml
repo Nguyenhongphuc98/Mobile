@@ -52,7 +52,7 @@
             android:id="@+id/tvDiary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Diary"
+            android:text="Note"
             android:drawableLeft="@drawable/dashboard_icon"
             android:textAllCaps="false"
             android:drawablePadding="16dp"

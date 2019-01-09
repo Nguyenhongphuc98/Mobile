@@ -35,7 +35,7 @@ public class Login extends Activity {
 
 
         Toast.makeText(getApplicationContext(), "LOADING ", Toast.LENGTH_LONG).show();
-        final UserDAL dbUser = new UserDAL(this);
+        final UserDAL dbUser = new UserDAL(Login.this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +45,8 @@ public class Login extends Activity {
                     if(user!=null) {
                         Bundle mBundle = new Bundle();
                         mBundle.putString("user",user.getEmail());
+                        mBundle.putString("id",String.valueOf(user.getId()));
+
                         Intent intent = new Intent(getApplicationContext(),UserActivity.class);
                         intent.putExtras(mBundle);
                         startActivity(intent);

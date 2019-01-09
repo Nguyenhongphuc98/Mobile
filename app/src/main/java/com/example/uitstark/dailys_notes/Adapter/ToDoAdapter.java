@@ -8,29 +8,30 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.uitstark.dailys_notes.DTO.BirthDay;
+import com.example.uitstark.dailys_notes.DTO.ToDo;
 import com.example.uitstark.dailys_notes.R;
 
 import java.util.List;
 
-public class BirthdayAdapter extends BaseAdapter {
+public class ToDoAdapter extends BaseAdapter {
 
     private Context context;
     private int layout;
-    private List<BirthDay> listBirthday;
+    private List<ToDo> listToDo;
 
     public static class ViewHolder{
-        TextView soThuTu, tenBanBe, ngaySinh, quanHe;
+        TextView soThuTu, title, time;
     }
 
-    public BirthdayAdapter(Context context, int layout, List<BirthDay> listBirthday){
+    public ToDoAdapter(Context context, int layout, List<ToDo> listToDo){
         this.context=context;
         this.layout=layout;
-        this.listBirthday=listBirthday;
+        this.listToDo=listToDo;
     }
 
     @Override
     public int getCount() {
-        return listBirthday.size();
+        return listToDo.size();
     }
 
     @Override
@@ -51,25 +52,16 @@ public class BirthdayAdapter extends BaseAdapter {
         if(viewRow==null){
             viewRow=inflater.inflate(layout,parent,false);
             ViewHolder holder=new ViewHolder();
-            holder.soThuTu=viewRow.findViewById(R.id.tvAvatar);
-            holder.tenBanBe=viewRow.findViewById(R.id.tvName);
-            holder.ngaySinh=viewRow.findViewById(R.id.tvBirthday);
-            holder.quanHe=viewRow.findViewById(R.id.tvRelationship);
-
+            holder.soThuTu=viewRow.findViewById(R.id.tvAvatarToDo);
+            holder.title=viewRow.findViewById(R.id.tvTitleToDo);
+            holder.time=viewRow.findViewById(R.id.tvTimeToDo);
             viewRow.setTag(holder);
         }
 
         ViewHolder viewHolder= (ViewHolder) viewRow.getTag();
-        //viewHolder.soThuTu.setText(String.valueOf(listBirthday.get(position).getId()));
-        String name;
-        name=listBirthday.get(position).getName();
-        name= Character.toString(name.charAt(0));
-        viewHolder.soThuTu.setText(String.valueOf(name));
-       // viewHolder.soThuTu.setText(String.valueOf(listBirthday.get(position).getId()));
-        viewHolder.tenBanBe.setText(listBirthday.get(position).getName());
-        viewHolder.ngaySinh.setText(listBirthday.get(position).getBornDay());
-        viewHolder.quanHe.setText(listBirthday.get(position).getNote());
-
+        viewHolder.soThuTu.setText(String.valueOf(listToDo.get(position).getId()));
+        viewHolder.title.setText(listToDo.get(position).getTitle());
+        viewHolder.time.setText(listToDo.get(position).getTime());
         return viewRow;
     }
 }

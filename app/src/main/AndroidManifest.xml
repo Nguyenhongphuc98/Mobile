@@ -7,9 +7,13 @@
 
 
     <application
+
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
+
         android:allowBackup="true"
         android:icon="@drawable/icons_app"
-        android:label="@string/app_name"
+        android:label=""
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -28,9 +32,21 @@
 
         <activity android:name=".Activity.NewBirthdayActivity"></activity>
 
+        <activity android:name=".Activity.EditBirthdayActivity"></activity>
+
         <activity android:name=".Activity.Register"></activity>
 
         <activity android:name=".Activity.UserActivity"></activity>
+
+
+        <activity android:name=".Activity.ListNoteActivity" />
+        <activity android:name=".Activity.ToDoActivity" />
+        <activity android:name=".Activity.NoteActivity" />
+        <activity android:name=".Activity.ListToDoActivity" />
+        <activity android:name=".Activity.UpdateNoteActivity" />
+        <activity android:name=".Activity.UpdateToDoActivity" />
+        <activity android:name=".Activity.SettingActivity" />
+
 
         <receiver android:name=".ServiceManage.AlarmReceiver"/>
 

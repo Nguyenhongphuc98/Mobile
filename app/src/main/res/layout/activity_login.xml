@@ -92,7 +92,7 @@
         android:ems="10"
         android:hint="@string/hintedittextpass"
 
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:maxLines="1"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"

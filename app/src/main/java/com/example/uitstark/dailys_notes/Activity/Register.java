@@ -19,6 +19,8 @@ public class Register  extends AppCompatActivity {
     private EditText edtFullName;
     private EditText edtUserName;
     private EditText edtPassword;
+    private  EditText getEdtPasswordConfirm;
+    protected boolean checkPasswordValidation = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState ) {
@@ -30,6 +32,7 @@ public class Register  extends AppCompatActivity {
         edtFullName= findViewById(R.id.fullNameRegister);
         edtUserName= findViewById(R.id.usernameRegister);
         edtPassword= findViewById(R.id.passwordRegister);
+        getEdtPasswordConfirm= findViewById(R.id.passwordRegisterConfirm);
 
         final UserDAL dbUser = new UserDAL(this);
 
@@ -37,15 +40,22 @@ public class Register  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!emptyValidation()) {
-                    dbUser.addUser(new User(edtUserName.getText().toString(), edtPassword.getText().toString(),edtFullName.getText().toString()));
-                    Toast.makeText(getApplicationContext(), "Added User", Toast.LENGTH_SHORT).show();
-                    edtFullName.setText("");
-                    edtUserName.setText("");
-                    edtPassword.setText("");
-                    Intent intent = new Intent(Register.this,Login.class);
-                    startActivity(intent);
+                    if(edtPassword.getText().toString().equals(getEdtPasswordConfirm.getText().toString())) {
+                        dbUser.addUser(new User(edtUserName.getText().toString(), edtPassword.getText().toString(),edtFullName.getText().toString()));
+                        Toast.makeText(getApplicationContext(), "Thêm người dùng thành công!", Toast.LENGTH_SHORT).show();
+                        edtFullName.setText("");
+                        edtUserName.setText("");
+                        edtPassword.setText("");
+                        getEdtPasswordConfirm.setText("");
+                        Intent intent = new Intent(Register.this,Login.class);
+                        startActivity(intent);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),"Xin vui lòng kiểm tra lại password nhập vào",Toast.LENGTH_SHORT).show();
+                    }
+
                 }else{
-                    Toast.makeText(getApplicationContext(), "Empty Fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Xin vui lòng nhập đầy đủ thông tin.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -54,7 +64,7 @@ public class Register  extends AppCompatActivity {
     }
 
     private boolean emptyValidation() {
-        if (TextUtils.isEmpty(edtUserName.getText().toString()) || TextUtils.isEmpty(edtPassword.getText().toString())) {
+        if (TextUtils.isEmpty(edtUserName.getText().toString()) || TextUtils.isEmpty(edtPassword.getText().toString())||TextUtils.isEmpty(getEdtPasswordConfirm.getText().toString())) {
             return true;
         }else {
             return false;
