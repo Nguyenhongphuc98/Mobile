@@ -33,6 +33,7 @@ public class NoteDAL extends DatabaseHandler {
         // Log.e("IDUSER1",String.valueOf(birthDay.getId_user()));
         values.put(KEY_NOTE__TITLE,note.getTitle());
         values.put(KEY_NOTE__CONTENT,note.getContent());
+        values.put(KEY_NOTE_COLOR,note.getColor());
 
 
         //if value is empty -> don't insert -> null
@@ -53,9 +54,10 @@ public class NoteDAL extends DatabaseHandler {
             int idUserNote=cursor.getInt(1);
             String title=cursor.getString(2);
             String content= cursor.getString(3);
+            int color=cursor.getInt(4);
 
 
-            note= new Note(idNote,idUserNote,title,content);
+            note= new Note(idNote,idUserNote,title,content,color);
         }
 
         db.close();
@@ -78,8 +80,9 @@ public class NoteDAL extends DatabaseHandler {
             int idUserNote=cursor.getInt(1);
             String title=cursor.getString(2);
             String content= cursor.getString(3);
+            int color=cursor.getInt(4);
 
-            Note note = new Note(idNote,idUserNote,title,content);
+            Note note = new Note(idNote,idUserNote,title,content,color);
             noteList.add(note);
             cursor.moveToNext();
         }
@@ -104,7 +107,8 @@ public class NoteDAL extends DatabaseHandler {
             int idUserNote=cursor.getInt(1);
             String title=cursor.getString(2);
             String content= cursor.getString(3);
-            Note note = new Note(idNote,idUserNote,title,content);
+            int color=cursor.getInt(4);
+            Note note = new Note(idNote,idUserNote,title,content,color);
             noteList.add(note);
             cursor.moveToNext();
         }
@@ -120,6 +124,7 @@ public class NoteDAL extends DatabaseHandler {
         values.put(KEY_NOTE__IDUSER, idUser);
         values.put(KEY_NOTE__TITLE, note.getTitle());
         values.put(KEY_NOTE__CONTENT, note.getContent());
+        values.put(KEY_NOTE_COLOR,note.getColor());
         db.update(TABLE_NOTE_NAME, values, KEY_NOTE__ID + " = ?", new String[] { String.valueOf(idNote) });
         db.close();
     }

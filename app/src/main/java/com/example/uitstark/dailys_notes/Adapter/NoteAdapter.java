@@ -1,6 +1,7 @@
 package com.example.uitstark.dailys_notes.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class NoteAdapter extends BaseAdapter {
         ViewHolder viewHolder= (ViewHolder) viewRow.getTag();
         viewHolder.soThuTu.setText(String.valueOf(listNote.get(position).getId()));
         viewHolder.title.setText(listNote.get(position).getTitle());
+        viewHolder.title.setTextColor(listNote.get(position).getColor());
 
         return viewRow;
     }

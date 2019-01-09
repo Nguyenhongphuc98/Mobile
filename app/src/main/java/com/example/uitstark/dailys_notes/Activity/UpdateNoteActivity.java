@@ -2,6 +2,7 @@ package com.example.uitstark.dailys_notes.Activity;
 
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -22,11 +23,15 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class UpdateNoteActivity  extends AppCompatActivity implements View.OnClickListener {
+import petrov.kristiyan.colorpicker.ColorPicker;
+
+public class UpdateNoteActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnUpdateNote;
+    Button btnUpdateColorPicker;
     TextView textViewTitle;
     EditText editTextUpdateTitle;
     EditText editTextUpdateContent;
+    public int CODE_NOTE_COLOR=0;
 
     NoteDAL noteDAL;
     Note note;
@@ -35,21 +40,20 @@ public class UpdateNoteActivity  extends AppCompatActivity implements View.OnCli
     private String currentNote;
 
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_updatenote);
 
         Bundle bundle = getIntent().getExtras();
-        currentUser=bundle.getString("idCurrentUser");
-        currentNote= bundle.getString("idCurrentNote");
+        currentUser = bundle.getString("idCurrentUser");
+        currentNote = bundle.getString("idCurrentNote");
 
         LinkView();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         SetAction();
 
-        noteDAL =new NoteDAL(UpdateNoteActivity.this);
+        noteDAL = new NoteDAL(UpdateNoteActivity.this);
         try {
             LoadNoteDataFromDatabase(currentNote);
         } catch (ParseException e) {
@@ -58,39 +62,61 @@ public class UpdateNoteActivity  extends AppCompatActivity implements View.OnCli
 
     }
 
-    void LinkView(){
-        btnUpdateNote =findViewById(R.id.btnUpdateNote);
+    void LinkView() {
+        btnUpdateNote = findViewById(R.id.btnUpdateNote);
+        btnUpdateColorPicker = findViewById(R.id.btnColorPickerUpdate);
+        editTextUpdateTitle = findViewById(R.id.edt_titleUpdateNote);
+        editTextUpdateContent = findViewById(R.id.edt_contentUpdateNote);
+        btnUpdateColorPicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ColorPicker colorPicker = new ColorPicker(UpdateNoteActivity.this);
+                colorPicker.show();
+                colorPicker.setOnChooseColorListener(new ColorPicker.OnChooseColorListener() {
+                    @Override
+                    public void onChooseColor(int position, int color) {
+                        editTextUpdateContent.setTextColor(color);
+                        CODE_NOTE_COLOR = color;
+                    }
 
-        editTextUpdateTitle=findViewById(R.id.edt_titleUpdateNote);
-        editTextUpdateContent=findViewById(R.id.edt_contentUpdateNote);
+                    @Override
+                    public void onCancel() {
+
+                    }
+                });
+            }
+        });
     }
+
     private void LoadNoteDataFromDatabase(String idCurrentNote) throws ParseException {
 
-        Toast.makeText(getApplicationContext(),idCurrentNote,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), idCurrentNote, Toast.LENGTH_SHORT).show();
 
-        int id=Integer.parseInt(idCurrentNote);
-        if(id==0)
-            Toast.makeText(getApplicationContext(),"oooooo",Toast.LENGTH_SHORT).show();
+        int id = Integer.parseInt(idCurrentNote);
+        if (id == 0)
+            Toast.makeText(getApplicationContext(), "oooooo", Toast.LENGTH_SHORT).show();
 
-        note= noteDAL.getNote(id);
+        note = noteDAL.getNote(id);
         editTextUpdateTitle.setText(note.getTitle());
+        editTextUpdateTitle.setTextColor(note.getColor());
         editTextUpdateContent.setText(note.getContent());
+        editTextUpdateContent.setTextColor(note.getColor());
 
     }
 
-    void SetAction(){
+    void SetAction() {
         btnUpdateNote.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
-        if(v==btnUpdateNote){
+        if (v == btnUpdateNote) {
             noteDAL = new NoteDAL(this);
-            String title= String.valueOf(editTextUpdateTitle.getText());
-            String content= String.valueOf(editTextUpdateContent.getText());
-            Note note = new Note(Integer.parseInt(currentUser),title,content);
-            noteDAL.updateNote(Integer.parseInt(currentNote),Integer.parseInt(currentUser),note);
+            String title = String.valueOf(editTextUpdateTitle.getText());
+            String content = String.valueOf(editTextUpdateContent.getText());
+            Note note = new Note(Integer.parseInt(currentUser), title, content, CODE_NOTE_COLOR);
+            noteDAL.updateNote(Integer.parseInt(currentNote), Integer.parseInt(currentUser), note);
             setResult(ListNoteActivity.ADDNOTERESULT);
             finish();
 
@@ -99,13 +125,13 @@ public class UpdateNoteActivity  extends AppCompatActivity implements View.OnCli
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 return true;
 
-            default:break;
+            default:
+                break;
         }
 
         return super.onOptionsItemSelected(item);

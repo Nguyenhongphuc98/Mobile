@@ -36,6 +36,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     protected static final String KEY_NOTE__TITLE = "title";
 
     protected static final String KEY_NOTE__CONTENT = "content";
+    protected static final String KEY_NOTE_COLOR= "color";
 
     // TODOList===============================
     protected static final String TABLE_TODO_NAME = "todo";
@@ -80,8 +81,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //===============NOTE=============================
         String strCreateTableNote=
                 String.format("CREATE TABLE %s" +
-                                "(%s INTEGER PRIMARY KEY,%s INTEGER, %s TEXT, %s TEXT)",
-                        TABLE_NOTE_NAME, KEY_NOTE__ID, KEY_NOTE__IDUSER, KEY_NOTE__TITLE,KEY_NOTE__CONTENT);
+                                "(%s INTEGER PRIMARY KEY,%s INTEGER, %s TEXT, %s TEXT,%s INTEGER)",
+                        TABLE_NOTE_NAME, KEY_NOTE__ID, KEY_NOTE__IDUSER, KEY_NOTE__TITLE,KEY_NOTE__CONTENT,KEY_NOTE_COLOR);
 
         db.execSQL(strCreateTableNote);
 
