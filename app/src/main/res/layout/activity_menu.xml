@@ -46,7 +46,7 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:padding="10dp"
-        android:background="@drawable/rectangle_1">
+        android:background="@drawable/bglogin">
 
         <TextView
             android:id="@+id/tvDiary"

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/layer_3"
+    android:background="@drawable/bglogin"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingLeft="16dp"
@@ -24,12 +24,13 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:gravity="center"
             android:text="Register New Account "
             android:textAllCaps="false"
             android:textColor="#fff"
-            android:textSize="26sp" />
+            android:textStyle="bold"
+            android:textSize="28sp" />
 
 
     </LinearLayout>
@@ -38,12 +39,12 @@
     <EditText
         android:id="@+id/fullNameRegister"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="70dp"
         android:layout_weight="0.03"
         android:background="@android:color/transparent"
-        android:drawablePadding="16dp"
+        android:drawablePadding="6dp"
         android:ems="10"
         android:hint="Full Name"
         android:inputType="textEmailAddress"
@@ -63,9 +64,9 @@
     <EditText
         android:id="@+id/usernameRegister"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_weight="0.03"
         android:background="@android:color/transparent"
         android:drawablePadding="16dp"
@@ -89,9 +90,9 @@
     <EditText
         android:id="@+id/passwordRegister"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_weight="0.05"
         android:background="@android:color/transparent"
         android:drawablePadding="16dp"
@@ -116,12 +117,12 @@
     <EditText
         android:id="@+id/passwordRegisterConfirm"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_weight="0.05"
         android:background="@android:color/transparent"
-        android:drawablePadding="16dp"
+        android:drawablePadding="5dp"
         android:ems="10"
         android:hint="Password Confirm"
         android:inputType="textPassword"
@@ -141,15 +142,15 @@
 
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
         android:layout_marginTop="20dp"
         android:clickable="true"
-        android:padding="10dp"
+        android:background="@drawable/background_pink"
         android:text="Register"
         android:textAllCaps="true"
         android:textColor="#fff"
-        android:textSize="10sp" />
+        android:textSize="18sp" />
 
 
 </LinearLayout>
