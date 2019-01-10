@@ -31,15 +31,15 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListToDoActivity extends AppCompatActivity  implements View.OnClickListener, View.OnCreateContextMenuListener {
+public class ListToDoActivity extends AppCompatActivity implements View.OnClickListener, View.OnCreateContextMenuListener {
 
     Button btnAddToDo;
     ListView listViewToDo;
     List<ToDo> listToDo;
     ToDoDAL toDoDAL;
 
-    public static final int ADDTODOCODE =0;
-    public static final int ADDTODORESULT =1;
+    public static final int ADDTODOCODE = 0;
+    public static final int ADDTODORESULT = 1;
 
     private String currentUser;
     private String currentToDo;
@@ -54,12 +54,12 @@ public class ListToDoActivity extends AppCompatActivity  implements View.OnClick
         LinkView();
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        listToDo=new ArrayList<>();
-        toDoDAL =new ToDoDAL(ListToDoActivity.this);
+        listToDo = new ArrayList<>();
+        toDoDAL = new ToDoDAL(ListToDoActivity.this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         Bundle bundle = getIntent().getExtras();
-        currentUser=bundle.getString("idCurrentUser");
+        currentUser = bundle.getString("idCurrentUser");
         try {
             LoadDataFromDatabase(currentUser);
         } catch (ParseException e) {
@@ -67,26 +67,37 @@ public class ListToDoActivity extends AppCompatActivity  implements View.OnClick
         }
 
         registerForContextMenu(listViewToDo);
-        // Toast.makeText(getApplicationContext(),"On list birthday",Toast.LENGTH_SHORT).show();
+        listViewToDo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ToDo toDoUpdate = null;
+                toDoUpdate = listToDo.get(i);
 
+                currentToDo = String.valueOf(toDoUpdate.getId());
+                Bundle mBundle = new Bundle();
+                mBundle.putString("idCurrentToDo", currentToDo);
+                mBundle.putString("idCurrentUser", currentUser);
+                Intent intent = new Intent(getApplicationContext(), UpdateToDoActivity.class);
+                intent.putExtras(mBundle);
+
+                startActivityForResult(intent, ADDTODOCODE);
+            }
+        });
     }
 
-    void LinkView(){
-        btnAddToDo =findViewById(R.id.btnAddToDo);
+    void LinkView() {
+        btnAddToDo = findViewById(R.id.btnAddToDo);
         btnAddToDo.setOnClickListener(this);
-        listViewToDo=findViewById(R.id.lvToDo);
+        listViewToDo = findViewById(R.id.lvToDo);
     }
 
     private void LoadDataFromDatabase(String idCurrentUser) throws ParseException {
 
-        Toast.makeText(getApplicationContext(),idCurrentUser,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), idCurrentUser, Toast.LENGTH_SHORT).show();
 
-        int id=Integer.parseInt(idCurrentUser);
-        if(id==0)
-            Toast.makeText(getApplicationContext(),"oooooo",Toast.LENGTH_SHORT).show();
-
-        listToDo= toDoDAL.getToDoOf(id);
-        adapter=new ToDoAdapter(this,R.layout.customrow_listview_todo,listToDo);
+        int id = Integer.parseInt(idCurrentUser);
+        listToDo = toDoDAL.getToDoOf(id);
+        adapter = new ToDoAdapter(this, R.layout.customrow_listview_todo, listToDo);
         adapter.notifyDataSetChanged();
         listViewToDo.setAdapter(adapter);
     }
@@ -94,26 +105,25 @@ public class ListToDoActivity extends AppCompatActivity  implements View.OnClick
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==ADDTODOCODE && resultCode==ADDTODORESULT){
+        if (requestCode == ADDTODOCODE && resultCode == ADDTODORESULT) {
             try {
                 LoadDataFromDatabase(currentUser);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            Toast.makeText(getApplicationContext(),"ok da nhan duoc thong tin",Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btnAddToDo:
 
                 Bundle mBundle = new Bundle();
-                mBundle.putString("idCurrentUser",currentUser);
-                Intent intent=new Intent(getApplicationContext(),ToDoActivity.class);
+                mBundle.putString("idCurrentUser", currentUser);
+                Intent intent = new Intent(getApplicationContext(), ToDoActivity.class);
                 intent.putExtras(mBundle);
-                startActivityForResult(intent,ADDTODOCODE);
+                startActivityForResult(intent, ADDTODOCODE);
                 break;
         }
     }
@@ -125,32 +135,17 @@ public class ListToDoActivity extends AppCompatActivity  implements View.OnClick
     }
 
     public boolean onContextItemSelected(MenuItem item) {
-        //find out which menu item was pressed
-        ToDoDAL toDoDAL=new ToDoDAL(ListToDoActivity.this);
+        ToDoDAL toDoDAL = new ToDoDAL(ListToDoActivity.this);
 
         switch (item.getItemId()) {
             case R.id.menuXoaToDo:
-                AdapterView.AdapterContextMenuInfo menuInfo= (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                ToDo toDo=null;
-                toDo=listToDo.get(menuInfo.position);
+                AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                ToDo toDo = null;
+                toDo = listToDo.get(menuInfo.position);
 
                 toDoDAL.deleteToDo(toDo.getId());
                 listToDo.remove(toDo);
                 adapter.notifyDataSetChanged();
-                return true;
-            case R.id.menuXemToDo:
-                AdapterView.AdapterContextMenuInfo menuInfoToDo= (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                ToDo toDoUpdate=null;
-                toDoUpdate=listToDo.get(menuInfoToDo.position);
-
-                currentToDo= String.valueOf(toDoUpdate.getId());
-                Bundle mBundle = new Bundle();
-                mBundle.putString("idCurrentToDo",currentToDo);
-                mBundle.putString("idCurrentUser",currentUser);
-                Intent intent=new Intent(getApplicationContext(),UpdateToDoActivity.class);
-                intent.putExtras(mBundle);
-
-                startActivityForResult(intent,ADDTODOCODE);
                 return true;
             default:
                 return false;

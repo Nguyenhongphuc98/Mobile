@@ -30,17 +30,13 @@ import petrov.kristiyan.colorpicker.ColorPicker;
 public class NoteActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnSaveNote;
     Button btnColorPicker;
-    TextView textViewTitle;
     EditText editTextTitle;
     EditText editTextContent;
 
     NoteDAL noteDAL;
-    PendingIntent pendingIntent;
-    Calendar calendar = Calendar.getInstance();
-
     String currentUser;
 
-    public int CODE_NOTE_COLOR=0;
+    public int CODE_NOTE_COLOR = 0;
 
 
     @Override
@@ -72,14 +68,14 @@ public class NoteActivity extends AppCompatActivity implements View.OnClickListe
                 colorPicker.show();
                 colorPicker.setOnChooseColorListener(new ColorPicker.OnChooseColorListener() {
                     @Override
-                    public void onChooseColor(int position,int color) {
+                    public void onChooseColor(int position, int color) {
                         editTextContent.setTextColor(color);
                         editTextTitle.setTextColor(color);
-                        CODE_NOTE_COLOR=color;
+                        CODE_NOTE_COLOR = color;
                     }
 
                     @Override
-                    public void onCancel(){
+                    public void onCancel() {
 
                     }
                 });
@@ -98,9 +94,8 @@ public class NoteActivity extends AppCompatActivity implements View.OnClickListe
             noteDAL = new NoteDAL(this);
             String title = String.valueOf(editTextTitle.getText());
             String content = String.valueOf(editTextContent.getText());
-            Note note = new Note(Integer.parseInt(currentUser), title, content,CODE_NOTE_COLOR);
+            Note note = new Note(Integer.parseInt(currentUser), title, content, CODE_NOTE_COLOR);
             noteDAL.addNote(note);
-            //notifi save and come back- update listview birthday
             setResult(ListNoteActivity.ADDNOTERESULT);
             finish();
 

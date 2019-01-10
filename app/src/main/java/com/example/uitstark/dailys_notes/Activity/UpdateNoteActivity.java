@@ -31,7 +31,7 @@ public class UpdateNoteActivity extends AppCompatActivity implements View.OnClic
     TextView textViewTitle;
     EditText editTextUpdateTitle;
     EditText editTextUpdateContent;
-    public int CODE_NOTE_COLOR=0;
+    public int CODE_NOTE_COLOR = 0;
 
     NoteDAL noteDAL;
     Note note;
@@ -76,6 +76,7 @@ public class UpdateNoteActivity extends AppCompatActivity implements View.OnClic
                     @Override
                     public void onChooseColor(int position, int color) {
                         editTextUpdateContent.setTextColor(color);
+                        editTextUpdateTitle.setTextColor(color);
                         CODE_NOTE_COLOR = color;
                     }
 
@@ -89,13 +90,8 @@ public class UpdateNoteActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void LoadNoteDataFromDatabase(String idCurrentNote) throws ParseException {
-
         Toast.makeText(getApplicationContext(), idCurrentNote, Toast.LENGTH_SHORT).show();
-
         int id = Integer.parseInt(idCurrentNote);
-        if (id == 0)
-            Toast.makeText(getApplicationContext(), "oooooo", Toast.LENGTH_SHORT).show();
-
         note = noteDAL.getNote(id);
         editTextUpdateTitle.setText(note.getTitle());
         editTextUpdateTitle.setTextColor(note.getColor());

@@ -68,8 +68,6 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         Toast.makeText(getApplicationContext(), idCurrentUser, Toast.LENGTH_SHORT).show();
 
         int id = Integer.parseInt(idCurrentUser);
-        if (id == 0)
-            Toast.makeText(getApplicationContext(), "Không có user", Toast.LENGTH_SHORT).show();
         user = userDAL.getUser(id);
         edtFullNameSetting.setText(user.getFullName());
         edtUserNameSetting.setText(user.getEmail());

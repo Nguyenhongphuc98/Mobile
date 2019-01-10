@@ -13,10 +13,9 @@ import android.widget.Toast;
 import com.example.uitstark.dailys_notes.R;
 
 
-
 public class UserActivity extends AppCompatActivity {
     private TextView tvUserNameMenu;
-    private TextView tvRemindBirthday ;
+    private TextView tvRemindBirthday;
     private TextView tvDiary;
     private TextView tvToDo;
     private TextView tvSettingAccount;
@@ -28,33 +27,30 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        tvUserNameMenu=findViewById(R.id.username_menu);
-        tvDiary= findViewById(R.id.tvDiary);
-        tvToDo=findViewById(R.id.tvToDoList);
-        tvSettingAccount=findViewById(R.id.tvSettingAccount);
-        tvRemindBirthday=findViewById(R.id.tvmenuremindbirthday);
-        tvLogOut=findViewById(R.id.tvlogout);
+        tvUserNameMenu = findViewById(R.id.username_menu);
+        tvDiary = findViewById(R.id.tvDiary);
+        tvToDo = findViewById(R.id.tvToDoList);
+        tvSettingAccount = findViewById(R.id.tvSettingAccount);
+        tvRemindBirthday = findViewById(R.id.tvmenuremindbirthday);
+        tvLogOut = findViewById(R.id.tvlogout);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
         Bundle bundle = getIntent().getExtras();
 
-        if(bundle!=null) {
+        if (bundle != null) {
             tvUserNameMenu.setText(bundle.getString("user"));
-           // Toast.makeText(getApplicationContext(),bundle.getString("id"),Toast.LENGTH_SHORT).show();
-            currenUser=bundle.getString("id");
+            currenUser = bundle.getString("id");
         }
 
         tvRemindBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("ERRRR","in user");
-
                 Bundle mBundle = new Bundle();
-                mBundle.putString("idCurrentUser",currenUser);
+                mBundle.putString("idCurrentUser", currenUser);
 
-                Intent intent = new Intent(getApplicationContext(),ListBirthdayActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ListBirthdayActivity.class);
 
                 intent.putExtras(mBundle);
                 startActivity(intent);
@@ -67,8 +63,8 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Bundle mBundle = new Bundle();
-                mBundle.putString("idCurrentUser",currenUser);
-                Intent intent= new Intent(getApplicationContext(),ListNoteActivity.class);
+                mBundle.putString("idCurrentUser", currenUser);
+                Intent intent = new Intent(getApplicationContext(), ListNoteActivity.class);
                 intent.putExtras(mBundle);
                 startActivity(intent);
             }
@@ -78,8 +74,8 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Bundle mBundle = new Bundle();
-                mBundle.putString("idCurrentUser",currenUser);
-                Intent intent = new Intent(getApplicationContext(),ListToDoActivity.class);
+                mBundle.putString("idCurrentUser", currenUser);
+                Intent intent = new Intent(getApplicationContext(), ListToDoActivity.class);
                 intent.putExtras(mBundle);
                 startActivity(intent);
             }
@@ -89,8 +85,8 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Bundle mBundle = new Bundle();
-                mBundle.putString("idCurrentUser",currenUser);
-                Intent intent = new Intent(getApplicationContext(),SettingActivity.class);
+                mBundle.putString("idCurrentUser", currenUser);
+                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 intent.putExtras(mBundle);
                 startActivity(intent);
             }
@@ -98,7 +94,7 @@ public class UserActivity extends AppCompatActivity {
         tvLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(getApplicationContext(),Login.class);
+                Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
             }
         });

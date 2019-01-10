@@ -75,7 +75,7 @@
     <EditText
         android:id="@+id/edt_contentUpdateNote"
         android:layout_width="match_parent"
-        android:layout_height="381dp"
+        android:layout_height="333dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:layout_weight="0.05"

@@ -15,25 +15,25 @@ import com.example.uitstark.dailys_notes.DTO.User;
 import com.example.uitstark.dailys_notes.DatabaseManage.UserDAL;
 import com.example.uitstark.dailys_notes.R;
 
-public class Register  extends AppCompatActivity {
+public class Register extends AppCompatActivity {
     private Button btnRegister;
     private EditText edtFullName;
     private EditText edtUserName;
     private EditText edtPassword;
-    private  EditText getEdtPasswordConfirm;
+    private EditText getEdtPasswordConfirm;
     protected boolean checkPasswordValidation = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState ) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        btnRegister= findViewById(R.id.btnRegister);
+        btnRegister = findViewById(R.id.btnRegister);
 
-        edtFullName= findViewById(R.id.fullNameRegister);
-        edtUserName= findViewById(R.id.usernameRegister);
-        edtPassword= findViewById(R.id.passwordRegister);
-        getEdtPasswordConfirm= findViewById(R.id.passwordRegisterConfirm);
+        edtFullName = findViewById(R.id.fullNameRegister);
+        edtUserName = findViewById(R.id.usernameRegister);
+        edtPassword = findViewById(R.id.passwordRegister);
+        getEdtPasswordConfirm = findViewById(R.id.passwordRegisterConfirm);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -43,21 +43,20 @@ public class Register  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!emptyValidation()) {
-                    if(edtPassword.getText().toString().equals(getEdtPasswordConfirm.getText().toString())) {
-                        dbUser.addUser(new User(edtUserName.getText().toString(), edtPassword.getText().toString(),edtFullName.getText().toString()));
+                    if (edtPassword.getText().toString().equals(getEdtPasswordConfirm.getText().toString())) {
+                        dbUser.addUser(new User(edtUserName.getText().toString(), edtPassword.getText().toString(), edtFullName.getText().toString()));
                         Toast.makeText(getApplicationContext(), "Thêm người dùng thành công!", Toast.LENGTH_SHORT).show();
                         edtFullName.setText("");
                         edtUserName.setText("");
                         edtPassword.setText("");
                         getEdtPasswordConfirm.setText("");
-                        Intent intent = new Intent(Register.this,Login.class);
+                        Intent intent = new Intent(Register.this, Login.class);
                         startActivity(intent);
-                    }
-                    else {
-                        Toast.makeText(getApplicationContext(),"Xin vui lòng kiểm tra lại password nhập vào",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Xin vui lòng kiểm tra lại password nhập vào", Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                } else {
                     Toast.makeText(getApplicationContext(), "Xin vui lòng nhập đầy đủ thông tin.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -67,9 +66,9 @@ public class Register  extends AppCompatActivity {
     }
 
     private boolean emptyValidation() {
-        if (TextUtils.isEmpty(edtUserName.getText().toString()) || TextUtils.isEmpty(edtPassword.getText().toString())||TextUtils.isEmpty(getEdtPasswordConfirm.getText().toString())) {
+        if (TextUtils.isEmpty(edtUserName.getText().toString()) || TextUtils.isEmpty(edtPassword.getText().toString()) || TextUtils.isEmpty(getEdtPasswordConfirm.getText().toString())) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }

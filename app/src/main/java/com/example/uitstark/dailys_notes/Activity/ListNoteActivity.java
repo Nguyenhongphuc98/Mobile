@@ -61,7 +61,6 @@ public class ListNoteActivity extends AppCompatActivity  implements View.OnClick
         Bundle bundle = getIntent().getExtras();
         currentUser=bundle.getString("idCurrentUser");
 
-        Log.e("ERRRR","in list note");
         try {
             LoadDataFromDatabase(currentUser);
         } catch (ParseException e) {
@@ -69,8 +68,23 @@ public class ListNoteActivity extends AppCompatActivity  implements View.OnClick
         }
 
         registerForContextMenu(listViewNote);
-        // Toast.makeText(getApplicationContext(),"On list birthday",Toast.LENGTH_SHORT).show();
+        listViewNote.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Note noteUpdate=null;
+                noteUpdate=listNote.get(i);
 
+                currentNote= String.valueOf(noteUpdate.getId());
+                Bundle mBundle = new Bundle();
+                mBundle.putString("idCurrentNote",currentNote);
+                mBundle.putString("idCurrentUser",currentUser);
+                Intent intent=new Intent(getApplicationContext(),UpdateNoteActivity.class);
+                intent.putExtras(mBundle);
+
+                startActivityForResult(intent,ADDNOTECODE);
+
+            }
+        });
     }
 
     void LinkView(){
@@ -84,12 +98,7 @@ public class ListNoteActivity extends AppCompatActivity  implements View.OnClick
         Toast.makeText(getApplicationContext(),idCurrentUser,Toast.LENGTH_SHORT).show();
 
         int id=Integer.parseInt(idCurrentUser);
-        if(id==0)
-            Toast.makeText(getApplicationContext(),"oooooo",Toast.LENGTH_SHORT).show();
-
         listNote= noteDAL.getNoteOf(id);
-        //listBirthday= birthDayDAL.getBirthdayOf(0);
-        Log.e("ERRRR","loaded list birthday from database");
         adapter=new NoteAdapter(this,R.layout.customrow_listview_note,listNote);
         adapter.notifyDataSetChanged();
         listViewNote.setAdapter(adapter);
@@ -104,7 +113,6 @@ public class ListNoteActivity extends AppCompatActivity  implements View.OnClick
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            Toast.makeText(getApplicationContext(),"ok da nhan duoc thong tin",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -132,7 +140,6 @@ public class ListNoteActivity extends AppCompatActivity  implements View.OnClick
 
 
     public boolean onContextItemSelected(MenuItem item) {
-        //find out which menu item was pressed
         NoteDAL noteDAL=new NoteDAL(ListNoteActivity.this);
 
         switch (item.getItemId()) {
@@ -145,50 +152,6 @@ public class ListNoteActivity extends AppCompatActivity  implements View.OnClick
                 listNote.remove(note);
                 adapter.notifyDataSetChanged();
                 return true;
-            case R.id.menuXemNote:
-                AdapterView.AdapterContextMenuInfo menuInfoNote= (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                Note noteUpdate=null;
-                noteUpdate=listNote.get(menuInfoNote.position);
-
-                currentNote= String.valueOf(noteUpdate.getId());
-                Bundle mBundle = new Bundle();
-                mBundle.putString("idCurrentNote",currentNote);
-                mBundle.putString("idCurrentUser",currentUser);
-                Intent intent=new Intent(getApplicationContext(),UpdateNoteActivity.class);
-                intent.putExtras(mBundle);
-
-                startActivityForResult(intent,ADDNOTECODE);
-                return true;
-
-
-//                Intent intent=new Intent(getApplicationContext(),UpdateNoteActivity.class);
-//                intent.putExtras(mBundle);
-//
-//                startActivityForResult(intent,ADDNOTECODE);
-//
-//                return true;
-//            Bundle bundle = getIntent().getExtras();
-//
-//            if(bundle!=null) {
-//                tvUserNameMenu.setText(bundle.getString("user"));
-//                // Toast.makeText(getApplicationContext(),bundle.getString("id"),Toast.LENGTH_SHORT).show();
-//                currenUser=bundle.getString("id");
-//            }
-//
-//            tvRemindBirthday.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Log.e("ERRRR","in user");
-//
-//                    Bundle mBundle = new Bundle();
-//                    mBundle.putString("idCurrentUser",currenUser);
-//
-//                    Intent intent = new Intent(getApplicationContext(),ListBirthdayActivity.class);
-//
-//                    intent.putExtras(mBundle);
-//                    startActivity(intent);
-//                }
-//            });
             default:
                 return false;
         }

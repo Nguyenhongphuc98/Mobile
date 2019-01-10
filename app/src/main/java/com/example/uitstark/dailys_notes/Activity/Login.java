@@ -34,7 +34,6 @@ public class Login extends Activity {
         edtPassword=findViewById(R.id.password_login);
 
 
-        Toast.makeText(getApplicationContext(), "LOADING ", Toast.LENGTH_LONG).show();
         final UserDAL dbUser = new UserDAL(Login.this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +49,7 @@ public class Login extends Activity {
                         Intent intent = new Intent(getApplicationContext(),UserActivity.class);
                         intent.putExtras(mBundle);
                         startActivity(intent);
-                        Toast.makeText(getApplicationContext(),"Welcome " + user.getEmail(),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),"Welcome " + user.getEmail(),Toast.LENGTH_SHORT).show();
 
                     } else {
                         Toast.makeText(getApplicationContext(), "User not found", Toast.LENGTH_SHORT).show();
