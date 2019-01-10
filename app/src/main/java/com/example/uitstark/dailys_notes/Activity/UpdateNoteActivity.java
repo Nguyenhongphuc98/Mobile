@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -28,7 +29,7 @@ import petrov.kristiyan.colorpicker.ColorPicker;
 public class UpdateNoteActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnUpdateNote;
     Button btnUpdateColorPicker;
-    TextView textViewTitle;
+    Button btnBackNoteUpdate;
     EditText editTextUpdateTitle;
     EditText editTextUpdateContent;
     public int CODE_NOTE_COLOR = 0;
@@ -50,8 +51,11 @@ public class UpdateNoteActivity extends AppCompatActivity implements View.OnClic
         currentNote = bundle.getString("idCurrentNote");
 
         LinkView();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         SetAction();
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         noteDAL = new NoteDAL(UpdateNoteActivity.this);
         try {
@@ -65,28 +69,9 @@ public class UpdateNoteActivity extends AppCompatActivity implements View.OnClic
     void LinkView() {
         btnUpdateNote = findViewById(R.id.btnUpdateNote);
         btnUpdateColorPicker = findViewById(R.id.btnColorPickerUpdate);
+        btnBackNoteUpdate=findViewById(R.id.btnBackNoteUpdate);
         editTextUpdateTitle = findViewById(R.id.edt_titleUpdateNote);
         editTextUpdateContent = findViewById(R.id.edt_contentUpdateNote);
-        btnUpdateColorPicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ColorPicker colorPicker = new ColorPicker(UpdateNoteActivity.this);
-                colorPicker.show();
-                colorPicker.setOnChooseColorListener(new ColorPicker.OnChooseColorListener() {
-                    @Override
-                    public void onChooseColor(int position, int color) {
-                        editTextUpdateContent.setTextColor(color);
-                        editTextUpdateTitle.setTextColor(color);
-                        CODE_NOTE_COLOR = color;
-                    }
-
-                    @Override
-                    public void onCancel() {
-
-                    }
-                });
-            }
-        });
     }
 
     private void LoadNoteDataFromDatabase(String idCurrentNote) throws ParseException {
@@ -102,6 +87,8 @@ public class UpdateNoteActivity extends AppCompatActivity implements View.OnClic
 
     void SetAction() {
         btnUpdateNote.setOnClickListener(this);
+        btnUpdateColorPicker.setOnClickListener(this);
+        btnBackNoteUpdate.setOnClickListener(this);
     }
 
     @Override
@@ -116,20 +103,39 @@ public class UpdateNoteActivity extends AppCompatActivity implements View.OnClic
             setResult(ListNoteActivity.ADDNOTERESULT);
             finish();
 
+        }else if(v==btnUpdateColorPicker) {
+            ColorPicker colorPicker = new ColorPicker(UpdateNoteActivity.this);
+            colorPicker.show();
+            colorPicker.setOnChooseColorListener(new ColorPicker.OnChooseColorListener() {
+                @Override
+                public void onChooseColor(int position, int color) {
+                    editTextUpdateContent.setTextColor(color);
+                    editTextUpdateTitle.setTextColor(color);
+                    CODE_NOTE_COLOR = color;
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
+            });
+        } else {
+            setResult(ListNoteActivity.ADDNOTERESULT);
+            finish();
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-
-            default:
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+//                onBackPressed();
+//                return true;
+//
+//            default:
+//                break;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 }
