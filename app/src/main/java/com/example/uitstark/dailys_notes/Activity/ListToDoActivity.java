@@ -92,9 +92,6 @@ public class ListToDoActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void LoadDataFromDatabase(String idCurrentUser) throws ParseException {
-
-        Toast.makeText(getApplicationContext(), idCurrentUser, Toast.LENGTH_SHORT).show();
-
         int id = Integer.parseInt(idCurrentUser);
         listToDo = toDoDAL.getToDoOf(id);
         adapter = new ToDoAdapter(this, R.layout.customrow_listview_todo, listToDo);

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -42,6 +43,7 @@ import java.util.List;
 public class ToDoActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnSaveToDo;
     Button buttonChooseTimeRemindToDo;
+    Button btnBackToDo;
     TextView textViewTime;
     EditText editTextTitle;
     EditText editTextContent;
@@ -65,14 +67,16 @@ public class ToDoActivity extends AppCompatActivity implements View.OnClickListe
         currentUser = bundle.getString("idCurrentUser");
 
         LinkView();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         SetAction();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
     }
 
     void LinkView() {
         buttonChooseTimeRemindToDo = findViewById(R.id.btnTimeRemindToDo);
         btnSaveToDo = findViewById(R.id.btnSaveToDo);
-
+        btnBackToDo = findViewById(R.id.btnBackToDo);
         editTextTitle = findViewById(R.id.edt_titleToDo);
         editTextContent = findViewById(R.id.edt_contentToDo);
         textViewTime = findViewById(R.id.tvTimeToDo);
@@ -81,6 +85,7 @@ public class ToDoActivity extends AppCompatActivity implements View.OnClickListe
     void SetAction() {
         buttonChooseTimeRemindToDo.setOnClickListener(this);
         btnSaveToDo.setOnClickListener(this);
+        btnBackToDo.setOnClickListener(this);
     }
 
     @Override
@@ -100,7 +105,11 @@ public class ToDoActivity extends AppCompatActivity implements View.OnClickListe
             }, h, mi, true);
 
             timePickerDialog.show();
-        } else {
+        }else if(v==btnBackToDo) {
+            setResult(ListToDoActivity.ADDTODORESULT);
+            finish();
+        }
+            else {
             toDoDAL = new ToDoDAL(this);
             String title = editTextTitle.getText().toString();
             String content = String.valueOf(editTextContent.getText());
@@ -134,17 +143,17 @@ public class ToDoActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-
-            default:
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+//                onBackPressed();
+//                return true;
+//
+//            default:
+//                break;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 }
