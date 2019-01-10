@@ -64,7 +64,7 @@ public class NoteAdapter extends BaseAdapter {
         }
 
         ViewHolder viewHolder= (ViewHolder) viewRow.getTag();
-        viewHolder.soThuTu.setText(String.valueOf(listNote.get(position).getId()));
+        //viewHolder.soThuTu.setText(String.valueOf(listNote.get(position).getId()));
         viewHolder.title.setText(listNote.get(position).getTitle());
         viewHolder.title.setTextColor(Color.WHITE);
         viewHolder.linearLayout.setBackgroundColor(listNote.get(position).getColor());

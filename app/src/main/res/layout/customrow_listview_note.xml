@@ -6,7 +6,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:orientation="vertical"
         android:id="@+id/layoutListNote"
         android:background="@drawable/border_note"
@@ -21,11 +21,10 @@
 
             <TextView
                 android:id="@+id/tvAvatarNote"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/retangle_avatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/minus"
                 android:gravity="center"
-                android:text="1"
                 android:textColor="#ffffff"
                 android:textSize="28sp"
                 android:textStyle="bold" />
