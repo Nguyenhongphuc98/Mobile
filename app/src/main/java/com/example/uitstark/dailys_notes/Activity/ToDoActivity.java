@@ -48,14 +48,13 @@ public class ToDoActivity extends AppCompatActivity implements View.OnClickListe
     EditText editTextTitle;
     EditText editTextContent;
 
-    private int y, m, d;
     private int h, mi;
 
     ToDoDAL toDoDAL;
     AlarmManager alarmManager;
     PendingIntent pendingIntent;
     Calendar calendar = Calendar.getInstance();
-
+    Calendar timeRemind=Calendar.getInstance();
     String currentUser;
 
     @Override
@@ -114,30 +113,25 @@ public class ToDoActivity extends AppCompatActivity implements View.OnClickListe
             String title = editTextTitle.getText().toString();
             String content = String.valueOf(editTextContent.getText());
             String time = textViewTime.getText().toString();
-            ToDo toDo = new ToDo(Integer.parseInt(currentUser), title, content, time, Color.WHITE);
+            ToDo toDo = new ToDo(Integer.parseInt(currentUser), title, content, time,0, Color.WHITE);
             toDoDAL.addToDo(toDo);
-            //set notify
+
+
             alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
             Intent intent = new Intent(ToDoActivity.this, AlarmToDo.class);
+
 
             byte[] data;
             data = Convert.ConverttoByte(toDo);
             intent.putExtra("todo", data);
+            timeRemind.set(Calendar.HOUR,h);
+            timeRemind.set(Calendar.MINUTE,mi);
+            timeRemind.set(Calendar.SECOND,0);
+            long current=Calendar.getInstance().getTimeInMillis();
+            long timeRemain= timeRemind.getTimeInMillis()-current;
 
-            //cacula time;
-            long timeRemain;
-            long yearMili = (y - calendar.get(Calendar.YEAR)) * 365 * 24 * 60 * 60 * 1000;
-            long monthMili = (m - calendar.get(Calendar.MONTH)) * calendar.get(Calendar.MONTH) * 24 * 60 * 60 * 1000;
-            long dayMili = (d - calendar.get(Calendar.DAY_OF_MONTH)) * 24 * 60 * 60 * 1000;
-            long hourMili = (h - calendar.get(Calendar.HOUR_OF_DAY)) * 60 * 60 * 1000;
-            long minuteMili = (mi - calendar.get(Calendar.MINUTE)) * 60 * 1000;
-            timeRemain = calendar.getTimeInMillis() + yearMili + monthMili + dayMili + hourMili + minuteMili;
-            //sendBroadcast(intent);
             pendingIntent = PendingIntent.getBroadcast(ToDoActivity.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
             alarmManager.set(AlarmManager.RTC_WAKEUP, timeRemain, pendingIntent);
-
-
-            //notifi save and come back- update listview birthday
             setResult(ListToDoActivity.ADDTODORESULT);
             finish();
         }

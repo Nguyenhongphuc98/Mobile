@@ -5,17 +5,26 @@
     android:background="@drawable/background_todo_blue">
 
 
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="120dp">
+        android:paddingTop="70dp"
+        >
 
+        <TextView
+            android:id="@+id/tv_doneToDoList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/red"
+            android:paddingLeft="100dp"
+            />
 
         <ListView
             android:id="@+id/lvToDo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></ListView>
+            android:layout_height="match_parent"
+            android:paddingTop="40dp"
+            ></ListView>
 
         <Button
             android:id="@+id/btnAddToDo"

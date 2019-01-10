@@ -60,7 +60,12 @@ public class ToDoAdapter extends BaseAdapter {
         }
 
         ViewHolder viewHolder= (ViewHolder) viewRow.getTag();
-        viewHolder.soThuTu.setText(String.valueOf(listToDo.get(position).getId()));
+        if(listToDo.get(position).getStatus()==1) {
+            viewHolder.soThuTu.setText("X");
+            viewHolder.soThuTu.setTextColor(Color.RED);
+
+        }
+
         viewHolder.title.setText(listToDo.get(position).getTitle());
         viewHolder.title.setTextColor(listToDo.get(position).getColor());
         viewHolder.time.setText(listToDo.get(position).getTime());

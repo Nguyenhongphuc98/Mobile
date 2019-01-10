@@ -35,7 +35,9 @@ public class ListToDoActivity extends AppCompatActivity implements View.OnClickL
 
     Button btnAddToDo;
     ListView listViewToDo;
+    TextView tvDone;
     List<ToDo> listToDo;
+    List<ToDo> listToDoDone;
     ToDoDAL toDoDAL;
 
     public static final int ADDTODOCODE = 0;
@@ -55,6 +57,8 @@ public class ListToDoActivity extends AppCompatActivity implements View.OnClickL
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         listToDo = new ArrayList<>();
+        listToDoDone = new ArrayList<>();
+
         toDoDAL = new ToDoDAL(ListToDoActivity.this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -83,17 +87,21 @@ public class ListToDoActivity extends AppCompatActivity implements View.OnClickL
                 startActivityForResult(intent, ADDTODOCODE);
             }
         });
+
+        tvDone.setText(String.valueOf(listToDoDone.size()));
     }
 
     void LinkView() {
         btnAddToDo = findViewById(R.id.btnAddToDo);
         btnAddToDo.setOnClickListener(this);
         listViewToDo = findViewById(R.id.lvToDo);
+        tvDone = findViewById(R.id.tv_doneToDoList);
     }
 
     private void LoadDataFromDatabase(String idCurrentUser) throws ParseException {
         int id = Integer.parseInt(idCurrentUser);
         listToDo = toDoDAL.getToDoOf(id);
+        listToDoDone=toDoDAL.getToDoDoneOf(id);
         adapter = new ToDoAdapter(this, R.layout.customrow_listview_todo, listToDo);
         adapter.notifyDataSetChanged();
         listViewToDo.setAdapter(adapter);
@@ -135,6 +143,14 @@ public class ListToDoActivity extends AppCompatActivity implements View.OnClickL
         ToDoDAL toDoDAL = new ToDoDAL(ListToDoActivity.this);
 
         switch (item.getItemId()) {
+            case R.id.menuDoneToDo:
+                AdapterView.AdapterContextMenuInfo menuInfoDone = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                ToDo toDoDone = null;
+                toDoDone = listToDo.get(menuInfoDone.position);
+                toDoDAL.updateStatusToDo(toDoDone.getId(), Integer.parseInt(currentUser));
+                adapter.notifyDataSetChanged();
+                tvDone.setText(String.valueOf(listToDoDone.size()));
+                return true;
             case R.id.menuXoaToDo:
                 AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
                 ToDo toDo = null;
@@ -142,6 +158,9 @@ public class ListToDoActivity extends AppCompatActivity implements View.OnClickL
 
                 toDoDAL.deleteToDo(toDo.getId());
                 listToDo.remove(toDo);
+                listToDoDone.remove(toDo);
+                adapter.notifyDataSetChanged();
+                tvDone.setText(String.valueOf(listToDoDone.size()));
                 adapter.notifyDataSetChanged();
                 return true;
             default:

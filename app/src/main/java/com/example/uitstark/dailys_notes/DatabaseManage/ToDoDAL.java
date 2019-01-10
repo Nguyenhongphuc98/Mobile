@@ -34,6 +34,7 @@ public class ToDoDAL extends DatabaseHandler {
         values.put(KEY_TODO__TITLE,toDo.getTitle());
         values.put(KEY_TODO__CONTENT, toDo.getContent());
         values.put(KEY_TODO_TIME,toDo.getTime());
+        values.put(KEY_TODO_STATUS,0);
         values.put(KEY_TODO_COLOR,toDo.getColor());
 
         //if value is empty -> don't insert -> null
@@ -53,8 +54,9 @@ public class ToDoDAL extends DatabaseHandler {
             String title=cursor.getString(2);
             String content= cursor.getString(3);
             String time= cursor.getString(4);
-            int color=cursor.getInt(5);
-            toDo= new ToDo(idToDo,idUserToDo,title,content,time,color);
+            int status=cursor.getInt(5);
+            int color=cursor.getInt(6);
+            toDo= new ToDo(idToDo,idUserToDo,title,content,time,status,color);
         }
 
         db.close();
@@ -65,7 +67,7 @@ public class ToDoDAL extends DatabaseHandler {
 
         List<ToDo>  toDoList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_TODO_NAME, null, KEY_TODO__IDUSER + " = ?", new String[] { String.valueOf(IdUser) },null, null, null);
+        Cursor cursor = db.query(TABLE_TODO_NAME, null,  KEY_TODO__IDUSER + " = ?" , new String[] { String.valueOf(IdUser) },null, null, null);
         cursor.moveToFirst();
 
         while(!cursor.isAfterLast()) {
@@ -74,8 +76,9 @@ public class ToDoDAL extends DatabaseHandler {
             String title=cursor.getString(2);
             String content= cursor.getString(3);
             String time= cursor.getString(4);
-            int color=cursor.getInt(5);
-            ToDo toDo= new ToDo(idToDo,idUserToDo,title,content,time,color);
+            int status=cursor.getInt(5);
+            int color=cursor.getInt(6);
+            ToDo toDo= new ToDo(idToDo,idUserToDo,title,content,time,status,color);
             toDoList.add(toDo);
             cursor.moveToNext();
         }
@@ -83,7 +86,29 @@ public class ToDoDAL extends DatabaseHandler {
         db.close();
         return toDoList;
     }
+    public List<ToDo> getToDoDoneOf(int IdUser) throws ParseException {
 
+        List<ToDo>  toDoList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_TODO_NAME, null, KEY_TODO_STATUS+" = 1 AND "+ KEY_TODO__IDUSER + " = ?" , new String[] { String.valueOf(IdUser) },null, null, null);
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()) {
+            int idToDo=cursor.getInt(0);
+            int idUserToDo=cursor.getInt(1);
+            String title=cursor.getString(2);
+            String content= cursor.getString(3);
+            String time= cursor.getString(4);
+            int status=cursor.getInt(5);
+            int color=cursor.getInt(6);
+            ToDo toDo= new ToDo(idToDo,idUserToDo,title,content,time,status,color);
+            toDoList.add(toDo);
+            cursor.moveToNext();
+        }
+
+        db.close();
+        return toDoList;
+    }
     public List<ToDo> getAllToDo() throws ParseException {
         List<ToDo>  toDoList = new ArrayList<>();
         String query = "SELECT * FROM " + TABLE_TODO_NAME;
@@ -96,8 +121,9 @@ public class ToDoDAL extends DatabaseHandler {
             String title=cursor.getString(2);
             String content= cursor.getString(3);
             String time= cursor.getString(4);
-            int color=cursor.getInt(5);
-            ToDo toDo= new ToDo(idToDo,idUserToDo,title,content,time,color);
+            int status=cursor.getInt(5);
+            int color=cursor.getInt(6);
+            ToDo toDo= new ToDo(idToDo,idUserToDo,title,content,time,status,color);
             toDoList.add(toDo);
             cursor.moveToNext();
         }
@@ -114,6 +140,16 @@ public class ToDoDAL extends DatabaseHandler {
         values.put(KEY_TODO__TITLE, toDo.getTitle());
         values.put(KEY_TODO__CONTENT, toDo.getContent());
         values.put(KEY_TODO_TIME, toDo.getTime());
+        db.update(TABLE_TODO_NAME, values, KEY_TODO__ID + " = ?", new String[] { String.valueOf(idToDo) });
+        db.close();
+    }
+
+    public void updateStatusToDo(int idToDo, int idUser) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_TODO__IDUSER, idUser);
+        values.put(KEY_TODO_STATUS,1);
+        ;
         db.update(TABLE_TODO_NAME, values, KEY_TODO__ID + " = ?", new String[] { String.valueOf(idToDo) });
         db.close();
     }

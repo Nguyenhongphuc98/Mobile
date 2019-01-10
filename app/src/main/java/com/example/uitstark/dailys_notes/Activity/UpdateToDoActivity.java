@@ -95,9 +95,6 @@ public class UpdateToDoActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void LoadToDoDataFromDatabase(String idCurrentToDo) throws ParseException {
-
-        Toast.makeText(getApplicationContext(), idCurrentToDo, Toast.LENGTH_SHORT).show();
-
         int id = Integer.parseInt(idCurrentToDo);
         toDo = toDoDAL.getToDo(id);
         editTextUpdateTitle.setText(toDo.getTitle());
@@ -138,7 +135,7 @@ public class UpdateToDoActivity extends AppCompatActivity implements View.OnClic
             String title = editTextUpdateTitle.getText().toString();
             String content = String.valueOf(editTextUpdateContent.getText());
             String time = textViewTimeUpdate.getText().toString();
-            ToDo toDo = new ToDo(Integer.parseInt(currentUser), title, content, time, Color.WHITE);
+            ToDo toDo = new ToDo(Integer.parseInt(currentUser), title, content, time,0, Color.WHITE);
             toDoDAL.updateToDo(Integer.parseInt(currentToDo), Integer.parseInt(currentUser), toDo);
             //set notify
             alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
