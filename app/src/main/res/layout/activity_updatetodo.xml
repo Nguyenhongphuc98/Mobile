@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rectangle_2"
+    android:background="@drawable/background_addtodo_blue"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
     android:weightSum="1"
 
     >
@@ -20,13 +17,21 @@
         android:orientation="horizontal"
         android:weightSum="1">
 
+        <Button
+            android:id="@+id/btnBackToDoUpdate"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="top|left"
+            android:background="@drawable/icons_back_500"
+            android:clickable="true" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
-            android:text="Schedule"
             android:textAllCaps="false"
-            android:textColor="#fff"
+            android:textColor="#c5cae9"
             android:textSize="26sp" />
 
 
@@ -41,24 +46,23 @@
         android:layout_marginTop="10dp"
         android:layout_weight="0.03"
         android:background="@android:color/transparent"
-
         android:drawablePadding="16dp"
         android:ems="10"
+        android:gravity="center"
         android:hint="Title name"
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:textColor="@color/white"
         android:textColorHint="#fff"
         android:textSize="16sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#FFF"
+        android:background="#c5cae9"
         android:paddingTop="10dp" />
-
-
     <EditText
         android:id="@+id/edt_contentUpdateToDo"
         android:layout_width="match_parent"
@@ -66,8 +70,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:layout_weight="0.05"
-        android:background="@android:color/transparent"
-
         android:drawablePadding="16dp"
         android:ems="10"
         android:gravity="top|left"
@@ -77,58 +79,65 @@
         android:minLines="6"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:textColor="@color/white"
         android:textColorHint="#fff"
-        android:textSize="16sp" />
+        android:textSize="16sp"
 
+
+        />
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#FFF"
+        android:background="#c5cae9"
         android:paddingTop="10dp" />
 
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_marginTop="-3dp"
-        android:layout_marginLeft="70dp">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tvTimeUpdateToDo"
             android:layout_width="wrap_content"
+            android:layout_marginLeft="100dp"
             android:layout_height="wrap_content"
             android:text="Time "
             android:textColor="@color/red"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btnTimeRemindUpdateToDo"
             android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:text="..."
-            android:layout_marginStart="60dp"/>
+            android:layout_height="60dp"
+            android:layout_marginStart="60dp"
+            android:background="@drawable/icons8_alarm_clock_480" />
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#FFF"
+        android:background="#c5cae9"
         android:paddingTop="10dp" />
 
     <Button
         android:id="@+id/btnUpdateToDo"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/border_button"
         android:clickable="true"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Update ToDo"
+        android:text="Save"
         android:textAllCaps="true"
         android:textColor="#fff"
-        android:textSize="10sp" />
+        android:textSize="20sp" />
+
 
 
 

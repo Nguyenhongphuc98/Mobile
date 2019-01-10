@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -44,6 +45,7 @@ import java.util.List;
 public class UpdateToDoActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnUpdateToDo;
     Button buttonChooseTimeRemindUpdateToDo;
+    Button btnBackToDoUpdate;
     TextView textViewTimeUpdate;
     EditText editTextUpdateTitle;
     EditText editTextUpdateContent;
@@ -70,8 +72,10 @@ public class UpdateToDoActivity extends AppCompatActivity implements View.OnClic
         currentToDo = bundle.getString("idCurrentToDo");
 
         LinkView();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         SetAction();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         toDoDAL = new ToDoDAL(UpdateToDoActivity.this);
         try {
@@ -84,7 +88,7 @@ public class UpdateToDoActivity extends AppCompatActivity implements View.OnClic
     void LinkView() {
         buttonChooseTimeRemindUpdateToDo = findViewById(R.id.btnTimeRemindUpdateToDo);
         btnUpdateToDo = findViewById(R.id.btnUpdateToDo);
-
+        btnBackToDoUpdate = findViewById(R.id.btnBackToDoUpdate);
         editTextUpdateTitle = findViewById(R.id.edt_titleUpdateToDo);
         editTextUpdateContent = findViewById(R.id.edt_contentUpdateToDo);
         textViewTimeUpdate = findViewById(R.id.tvTimeUpdateToDo);
@@ -105,6 +109,7 @@ public class UpdateToDoActivity extends AppCompatActivity implements View.OnClic
     void SetAction() {
         buttonChooseTimeRemindUpdateToDo.setOnClickListener(this);
         btnUpdateToDo.setOnClickListener(this);
+        btnBackToDoUpdate.setOnClickListener(this);
     }
 
     @Override
@@ -124,7 +129,11 @@ public class UpdateToDoActivity extends AppCompatActivity implements View.OnClic
             }, h, mi, true);
 
             timePickerDialog.show();
-        } else {
+        } else if(v==btnBackToDoUpdate)  {
+            setResult(ListToDoActivity.ADDTODORESULT);
+            finish();
+        }
+            else {
             toDoDAL = new ToDoDAL(this);
             String title = editTextUpdateTitle.getText().toString();
             String content = String.valueOf(editTextUpdateContent.getText());
