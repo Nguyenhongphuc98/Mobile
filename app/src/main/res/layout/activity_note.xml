@@ -3,12 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rectangle_2"
+    android:background="@drawable/note_background"
     android:gravity="center_horizontal"
     android:orientation="vertical"
 
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
     android:weightSum="1"
 
     >
@@ -21,24 +19,30 @@
         android:orientation="horizontal"
         android:weightSum="1">
 
+        <Button
+            android:id="@+id/btnBackNote"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="top|left"
+            android:background="@drawable/icons_back_500"
+            android:clickable="true" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="NOTE"
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="26sp" />
 
         <Button
             android:id="@+id/btnColorPicker"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_weight="0.1"
-            android:background="@drawable/color_picker"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="top"
+            android:background="@drawable/icons8_color_wheel_2_480"
             android:clickable="true"
-            android:gravity="right"
 
             />
 
@@ -54,9 +58,11 @@
         android:layout_marginTop="10dp"
         android:layout_weight="0.03"
         android:background="@android:color/transparent"
+        android:backgroundTint="#fff"
         android:drawablePadding="16dp"
         android:ems="10"
-        android:hint="Title name"
+        android:gravity="center"
+        android:hint="Title"
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:paddingStart="10dp"
@@ -68,18 +74,17 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#FFF"
-        android:paddingTop="10dp" />
+        android:paddingTop="10dp"
+        android:background="#69f0ae" />
 
 
     <EditText
         android:id="@+id/edt_contentNote"
         android:layout_width="match_parent"
-        android:layout_height="328dp"
+        android:layout_height="371dp"
         android:layout_gravity="top|left"
         android:layout_marginTop="10dp"
         android:layout_weight="0.05"
-        android:background="@android:color/transparent"
         android:drawablePadding="16dp"
         android:ems="10"
         android:gravity="top|left"
@@ -92,28 +97,28 @@
         android:singleLine="false"
         android:textColor="@color/white"
         android:textColorHint="#fff"
-        android:textSize="16sp"
-        />
+        android:textSize="16sp" />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#FFF"
-        android:paddingTop="10dp" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="2dp"-->
+        <!--android:background="#69f0ae"-->
+        <!--android:paddingTop="10dp" />-->
 
     <Button
         android:id="@+id/btnSaveNote"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/border_button"
         android:clickable="true"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Save Note"
+        android:text="Save"
         android:textAllCaps="true"
         android:textColor="#fff"
-        android:textSize="10sp" />
+        android:textSize="20sp" />
 
 
 </LinearLayout>

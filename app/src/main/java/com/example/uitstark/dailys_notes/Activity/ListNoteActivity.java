@@ -94,9 +94,6 @@ public class ListNoteActivity extends AppCompatActivity  implements View.OnClick
     }
 
     private void LoadDataFromDatabase(String idCurrentUser) throws ParseException {
-
-        Toast.makeText(getApplicationContext(),idCurrentUser,Toast.LENGTH_SHORT).show();
-
         int id=Integer.parseInt(idCurrentUser);
         listNote= noteDAL.getNoteOf(id);
         adapter=new NoteAdapter(this,R.layout.customrow_listview_note,listNote);

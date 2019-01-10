@@ -12,12 +12,14 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.uitstark.dailys_notes.DatabaseManage.NoteDAL;
 import com.example.uitstark.dailys_notes.R;
@@ -30,6 +32,7 @@ import petrov.kristiyan.colorpicker.ColorPicker;
 public class NoteActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnSaveNote;
     Button btnColorPicker;
+    Button btnBackNote;
     EditText editTextTitle;
     EditText editTextContent;
 
@@ -49,7 +52,10 @@ public class NoteActivity extends AppCompatActivity implements View.OnClickListe
 
         LinkView();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         SetAction();
     }
@@ -57,34 +63,16 @@ public class NoteActivity extends AppCompatActivity implements View.OnClickListe
 
     void LinkView() {
         btnSaveNote = findViewById(R.id.btnSaveNote);
+        btnBackNote=findViewById(R.id.btnBackNote);
         btnColorPicker = findViewById(R.id.btnColorPicker);
         editTextTitle = findViewById(R.id.edt_titleNote);
         editTextContent = findViewById(R.id.edt_contentNote);
-
-        btnColorPicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ColorPicker colorPicker = new ColorPicker(NoteActivity.this);
-                colorPicker.show();
-                colorPicker.setOnChooseColorListener(new ColorPicker.OnChooseColorListener() {
-                    @Override
-                    public void onChooseColor(int position, int color) {
-                        editTextContent.setTextColor(color);
-                        editTextTitle.setTextColor(color);
-                        CODE_NOTE_COLOR = color;
-                    }
-
-                    @Override
-                    public void onCancel() {
-
-                    }
-                });
-            }
-        });
     }
 
     void SetAction() {
         btnSaveNote.setOnClickListener(this);
+        btnBackNote.setOnClickListener(this);
+        btnColorPicker.setOnClickListener(this);
     }
 
     @Override
@@ -99,6 +87,25 @@ public class NoteActivity extends AppCompatActivity implements View.OnClickListe
             setResult(ListNoteActivity.ADDNOTERESULT);
             finish();
 
+        } else if (v==btnBackNote) {
+            setResult(ListNoteActivity.ADDNOTERESULT);
+            finish();
+        } else {
+            ColorPicker colorPicker = new ColorPicker(NoteActivity.this);
+            colorPicker.show();
+            colorPicker.setOnChooseColorListener(new ColorPicker.OnChooseColorListener() {
+                @Override
+                public void onChooseColor(int position, int color) {
+                    editTextContent.setTextColor(color);
+                    editTextTitle.setTextColor(color);
+                    CODE_NOTE_COLOR = color;
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
+            });
         }
     }
 

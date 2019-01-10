@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.uitstark.dailys_notes.DTO.BirthDay;
@@ -22,6 +23,7 @@ public class NoteAdapter extends BaseAdapter {
 
     public static class ViewHolder{
         TextView soThuTu, title;
+        LinearLayout linearLayout;
     }
 
     public NoteAdapter(Context context, int layout, List<Note> listNote){
@@ -55,6 +57,7 @@ public class NoteAdapter extends BaseAdapter {
             ViewHolder holder=new ViewHolder();
             holder.soThuTu=viewRow.findViewById(R.id.tvAvatarNote);
             holder.title=viewRow.findViewById(R.id.tvTitleNote);
+            holder.linearLayout=viewRow.findViewById(R.id.layoutListNote);
 
 
             viewRow.setTag(holder);
@@ -63,7 +66,8 @@ public class NoteAdapter extends BaseAdapter {
         ViewHolder viewHolder= (ViewHolder) viewRow.getTag();
         viewHolder.soThuTu.setText(String.valueOf(listNote.get(position).getId()));
         viewHolder.title.setText(listNote.get(position).getTitle());
-        viewHolder.title.setTextColor(listNote.get(position).getColor());
+        viewHolder.title.setTextColor(Color.WHITE);
+        viewHolder.linearLayout.setBackgroundColor(listNote.get(position).getColor());
 
         return viewRow;
     }
