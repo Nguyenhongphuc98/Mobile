@@ -65,8 +65,6 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
     private void LoadNoteDataFromDatabase(String idCurrentUser) throws ParseException {
 
-        Toast.makeText(getApplicationContext(), idCurrentUser, Toast.LENGTH_SHORT).show();
-
         int id = Integer.parseInt(idCurrentUser);
         user = userDAL.getUser(id);
         edtFullNameSetting.setText(user.getFullName());
