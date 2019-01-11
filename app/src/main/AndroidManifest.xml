@@ -11,11 +11,12 @@
         tools:replace="android:appComponentFactory"
 
         android:appComponentFactory="whateverString"
+
         android:hardwareAccelerated="false"
         android:largeHeap="true"
 
         android:allowBackup="true"
-        android:icon="@drawable/icons_app"
+        android:icon="@drawable/notes"
         android:label=""
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"

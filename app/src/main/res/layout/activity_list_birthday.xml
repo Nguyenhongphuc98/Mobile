@@ -21,8 +21,8 @@
             android:layout_height="32sp"
             android:layout_marginTop="62dp"
             android:layout_marginLeft="63dp"
-            android:textColor="#f253"
-            android:text="4"
+            android:textColor="#fff"
+            android:text="0"
             android:gravity="bottom"/>
 
         <com.baoyz.swipemenulistview.SwipeMenuListView
@@ -38,7 +38,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/button_1"
-            android:layout_gravity="bottom"/>
+            android:layout_gravity="bottom|right"/>
     </FrameLayout>
 
 </LinearLayout>
