@@ -50,7 +50,6 @@ public class UpdateToDoActivity extends AppCompatActivity implements View.OnClic
     EditText editTextUpdateTitle;
     EditText editTextUpdateContent;
 
-    private int y, m, d;
     private int h, mi;
 
     ToDoDAL toDoDAL;
@@ -58,6 +57,7 @@ public class UpdateToDoActivity extends AppCompatActivity implements View.OnClic
     AlarmManager alarmManager;
     PendingIntent pendingIntent;
     Calendar calendar = Calendar.getInstance();
+    Calendar timeRemind=Calendar.getInstance();
 
     String currentUser;
     private String currentToDo;
@@ -137,27 +137,22 @@ public class UpdateToDoActivity extends AppCompatActivity implements View.OnClic
             String time = textViewTimeUpdate.getText().toString();
             ToDo toDo = new ToDo(Integer.parseInt(currentUser), title, content, time,0, Color.WHITE);
             toDoDAL.updateToDo(Integer.parseInt(currentToDo), Integer.parseInt(currentUser), toDo);
-            //set notify
+
             alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
             Intent intent = new Intent(UpdateToDoActivity.this, AlarmToDo.class);
+
 
             byte[] data;
             data = Convert.ConverttoByte(toDo);
             intent.putExtra("todo", data);
+            timeRemind.set(Calendar.HOUR,h);
+            timeRemind.set(Calendar.MINUTE,mi);
+            timeRemind.set(Calendar.SECOND,0);
+            long current=Calendar.getInstance().getTimeInMillis();
+            long timeRemain= timeRemind.getTimeInMillis()-current;
 
-            //cacula time;
-            long timeRemain;
-            long yearMili = (y - calendar.get(Calendar.YEAR)) * 365 * 24 * 60 * 60 * 1000;
-            long monthMili = (m - calendar.get(Calendar.MONTH)) * calendar.get(Calendar.MONTH) * 24 * 60 * 60 * 1000;
-            long dayMili = (d - calendar.get(Calendar.DAY_OF_MONTH)) * 24 * 60 * 60 * 1000;
-            long hourMili = (h - calendar.get(Calendar.HOUR_OF_DAY)) * 60 * 60 * 1000;
-            long minuteMili = (mi - calendar.get(Calendar.MINUTE)) * 60 * 1000;
-            timeRemain = calendar.getTimeInMillis() + yearMili + monthMili + dayMili + hourMili + minuteMili;
-            //sendBroadcast(intent);
             pendingIntent = PendingIntent.getBroadcast(UpdateToDoActivity.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
             alarmManager.set(AlarmManager.RTC_WAKEUP, timeRemain, pendingIntent);
-
-
             setResult(ListToDoActivity.ADDTODORESULT);
             finish();
         }
