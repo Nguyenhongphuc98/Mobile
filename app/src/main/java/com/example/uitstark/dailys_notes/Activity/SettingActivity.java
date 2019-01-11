@@ -103,14 +103,19 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 if(user!=null) {
                     if(edtOldPassword.getText().toString().equals(edtPasswordSetting.getText().toString())==false&&edtOldPassword.getText().toString().equals(edtPasswordConfirmSetting.getText().toString())==false) {
                         if (edtPasswordSetting.getText().toString().equals(edtPasswordConfirmSetting.getText().toString())) {
-                            String fullname = edtFullNameSetting.getText().toString();
-                            String username = edtUserNameSetting.getText().toString();
-                            String password = edtPasswordSetting.getText().toString();
-                            User nuser = new User(Integer.parseInt(currentUser), username, password, fullname);
-                            dbUser.updateUser(Integer.parseInt(currentUser), nuser);
-                            Toast.makeText(getApplicationContext(), "Chỉnh sửa thông tin người dùng thành công!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SettingActivity.this, UserActivity.class);
-                            startActivity(intent);
+                            if(edtPasswordSetting.getText().toString().length()<6){
+                                Toast.makeText(getApplicationContext(), "Password tối thiểu 6 kí tự", Toast.LENGTH_SHORT).show();
+                            } else{
+                                String fullname = edtFullNameSetting.getText().toString();
+                                String username = edtUserNameSetting.getText().toString();
+                                String password = edtPasswordSetting.getText().toString();
+                                User nuser = new User(Integer.parseInt(currentUser),fullname, username, password);
+                                dbUser.updateUser(Integer.parseInt(currentUser), nuser);
+                                Toast.makeText(getApplicationContext(), "Chỉnh sửa thông tin người dùng thành công!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SettingActivity.this, UserActivity.class);
+                                startActivity(intent);
+                            }
+
                         } else {
                             Toast.makeText(getApplicationContext(), "Xin vui lòng kiểm tra lại mật khẩu mới nhập vào", Toast.LENGTH_SHORT).show();
                             edtOldPassword.setText("");

@@ -4,21 +4,22 @@ package com.example.uitstark.dailys_notes.DTO;
 public class User {
 
     private int id;
+    private String fullName;
     private String email;
     private String password;
-    private String fullName;
 
-    public User(int id, String email, String password, String fullName) {
+
+    public User(int id, String fullName, String email, String password) {
         this.id = id;
+        this.fullName = fullName;
         this.email = email;
         this.password = password;
-        this.fullName = fullName;
     }
 
-    public User(String email, String password, String fullName) {
+    public User(String fullName, String email, String password) {
+        this.fullName = fullName;
         this.email = email;
         this.password = password;
-        this.fullName = fullName;
     }
 
     public User(String email, String password) {

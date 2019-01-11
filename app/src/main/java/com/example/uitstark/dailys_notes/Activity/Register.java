@@ -44,14 +44,19 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 if (!emptyValidation()) {
                     if (edtPassword.getText().toString().equals(getEdtPasswordConfirm.getText().toString())) {
-                        dbUser.addUser(new User(edtUserName.getText().toString(), edtPassword.getText().toString(), edtFullName.getText().toString()));
-                        Toast.makeText(getApplicationContext(), "Thêm người dùng thành công!", Toast.LENGTH_SHORT).show();
-                        edtFullName.setText("");
-                        edtUserName.setText("");
-                        edtPassword.setText("");
-                        getEdtPasswordConfirm.setText("");
-                        Intent intent = new Intent(Register.this, Login.class);
-                        startActivity(intent);
+                        if(edtPassword.getText().toString().length()<6){
+                            Toast.makeText(getApplicationContext(), "Password tối thiểu 6 kí tự", Toast.LENGTH_SHORT).show();
+                        } else {
+                            dbUser.addUser(new User(edtFullName.getText().toString(),edtUserName.getText().toString(), edtPassword.getText().toString() ));
+                            Toast.makeText(getApplicationContext(), "Thêm người dùng thành công!", Toast.LENGTH_SHORT).show();
+                            edtFullName.setText("");
+                            edtUserName.setText("");
+                            edtPassword.setText("");
+                            getEdtPasswordConfirm.setText("");
+                            Intent intent = new Intent(Register.this, Login.class);
+                            startActivity(intent);
+                        }
+
                     } else {
                         Toast.makeText(getApplicationContext(), "Xin vui lòng kiểm tra lại password nhập vào", Toast.LENGTH_SHORT).show();
                     }

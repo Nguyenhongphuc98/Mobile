@@ -43,7 +43,7 @@ public class Login extends Activity {
                     User user =dbUser.queryUser(edtUserName.getText().toString(),edtPassword.getText().toString());
                     if(user!=null) {
                         Bundle mBundle = new Bundle();
-                        mBundle.putString("user",user.getEmail());
+                        mBundle.putString("user",user.getFullName());
                         mBundle.putString("id",String.valueOf(user.getId()));
 
                         Intent intent = new Intent(getApplicationContext(),UserActivity.class);
