@@ -39,7 +39,7 @@ public class NoteActivity extends AppCompatActivity implements View.OnClickListe
     NoteDAL noteDAL;
     String currentUser;
 
-    public int CODE_NOTE_COLOR = 0;
+    public int CODE_NOTE_COLOR = Color.CYAN;
 
 
     @Override

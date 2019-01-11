@@ -32,7 +32,7 @@ public class UpdateNoteActivity extends AppCompatActivity implements View.OnClic
     Button btnBackNoteUpdate;
     EditText editTextUpdateTitle;
     EditText editTextUpdateContent;
-    public int CODE_NOTE_COLOR = 0;
+    public int CODE_NOTE_COLOR = Color.CYAN;
 
     NoteDAL noteDAL;
     Note note;
