@@ -149,6 +149,11 @@ public class ListToDoActivity extends AppCompatActivity implements View.OnClickL
                 toDoDone = listToDo.get(menuInfoDone.position);
                 toDoDAL.updateStatusToDo(toDoDone.getId(), Integer.parseInt(currentUser));
                 adapter.notifyDataSetChanged();
+                try {
+                    LoadDataFromDatabase(currentUser);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 tvDone.setText(String.valueOf(listToDoDone.size()));
                 return true;
             case R.id.menuXoaToDo:
@@ -160,6 +165,11 @@ public class ListToDoActivity extends AppCompatActivity implements View.OnClickL
                 listToDo.remove(toDo);
                 listToDoDone.remove(toDo);
                 adapter.notifyDataSetChanged();
+                try {
+                    LoadDataFromDatabase(currentUser);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 tvDone.setText(String.valueOf(listToDoDone.size()));
                 adapter.notifyDataSetChanged();
                 return true;
